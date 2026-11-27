@@ -7,7 +7,9 @@
   <title>Acceso — Community 360</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
       --abyss: #03060c;
@@ -94,8 +96,15 @@
     }
 
     @keyframes portalIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.985); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.985);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     /* Panel creativo izquierdo */
@@ -146,8 +155,15 @@
     }
 
     @keyframes radarPing {
-      0% { transform: scale(0.75); opacity: 0.9; }
-      100% { transform: scale(2.1); opacity: 0; }
+      0% {
+        transform: scale(0.75);
+        opacity: 0.9;
+      }
+
+      100% {
+        transform: scale(2.1);
+        opacity: 0;
+      }
     }
 
     .hero-copy h2 {
@@ -220,11 +236,9 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(
-        360px circle at var(--mx, 50%) var(--my, 35%),
-        rgba(34, 211, 238, 0.12),
-        transparent 65%
-      );
+      background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 35%),
+          rgba(34, 211, 238, 0.12),
+          transparent 65%);
       pointer-events: none;
     }
 
@@ -402,7 +416,9 @@
     }
 
     @keyframes rot {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     .feedback {
@@ -432,9 +448,19 @@
     }
 
     @keyframes errShake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-5px);
+      }
+
+      75% {
+        transform: translateX(5px);
+      }
     }
 
     .foot-meta {
@@ -484,26 +510,27 @@
     <section class="visual-side">
       <div class="top-tag">
         <span class="pulse-ring"></span>
-        COMMUNITY 360 · TELEMETRÍA
+        COMMUNITY 360
       </div>
 
       <div class="hero-copy">
-        <h2>Community 360 · Analítica</h2>
-        <p>Consulta series históricas desde PostgreSQL en la nube y observa cómo cambian los indicadores de la comunidad en tiempo real vía WebSockets.</p>
+        <h2>Community 360</h2>
+        <p>Consulta la actividad histórica de la comunidad y revisa cómo cambian los indicadores al momento sin recargar
+          la página.</p>
       </div>
 
       <div class="spec-grid">
         <div class="spec-card">
-          <strong>REST + SQL</strong>
-          <span>Datos depurados en nube</span>
+          <strong>HISTÓRICO</strong>
+          <span>Datos depurados en la nube</span>
         </div>
         <div class="spec-card">
-          <strong>WS LIVE</strong>
+          <strong>AL MOMENTO</strong>
           <span>Actualización sin recargar</span>
         </div>
         <div class="spec-card">
-          <strong>JWT COOKIE</strong>
-          <span>Sesión HttpOnly segura</span>
+          <strong>ACCESO</strong>
+          <span>Sesión protegida</span>
         </div>
       </div>
     </section>
@@ -512,7 +539,7 @@
       <div class="login-content">
         <div class="login-head">
           <h1>Iniciar sesión</h1>
-          <p>Introduce tus credenciales autorizadas para continuar.</p>
+          <p>Escribe tu correo y contraseña para entrar al panel.</p>
         </div>
 
         <form id="loginForm" autocomplete="on">
@@ -539,7 +566,8 @@
                 </svg>
               </span>
               <input id="password" name="password" type="password" placeholder="••••••••••••" required />
-              <button type="button" class="eye-toggle" id="togglePassBtn" title="Mostrar u ocultar contraseña" aria-label="Mostrar contraseña">
+              <button type="button" class="eye-toggle" id="togglePassBtn" title="Mostrar u ocultar contraseña"
+                aria-label="Mostrar contraseña">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
@@ -552,13 +580,13 @@
 
           <button type="submit" class="btn-enter" id="submitBtn">
             <span class="spin-ring"></span>
-            <span id="btnLabel">Acceder al Dashboard</span>
+            <span id="btnLabel">Entrar al panel</span>
           </button>
         </form>
 
         <div class="foot-meta">
-          <span>POST /api/auth/login</span>
-          <span>TLS · BCRYPT</span>
+          <span>Community 360</span>
+          <span>Acceso autorizado</span>
         </div>
       </div>
     </section>
@@ -595,7 +623,7 @@
       statusBox.className = 'feedback';
       submitBtn.disabled = true;
       submitBtn.classList.add('loading');
-      btnLabel.textContent = 'Validando credenciales...';
+      btnLabel.textContent = 'Revisando datos...';
 
       try {
         const res = await fetch('/api/auth/login', {
@@ -612,20 +640,20 @@
           showStatus('error', data.error || 'No se pudo iniciar sesión.');
           submitBtn.disabled = false;
           submitBtn.classList.remove('loading');
-          btnLabel.textContent = 'Acceder al Dashboard';
+          btnLabel.textContent = 'Entrar al panel';
           return;
         }
 
-        showStatus('success', 'Credenciales válidas. Redirigiendo al dashboard...');
+        showStatus('success', 'Acceso correcto. Abriendo panel...');
         btnLabel.textContent = 'Abriendo panel...';
         setTimeout(() => {
           window.location.href = '/dashboard';
         }, 300);
       } catch {
-        showStatus('error', 'Error de red al conectar con el servidor.');
+        showStatus('error', 'No se pudo conectar con el servidor.');
         submitBtn.disabled = false;
         submitBtn.classList.remove('loading');
-        btnLabel.textContent = 'Acceder al Dashboard';
+        btnLabel.textContent = 'Entrar al panel';
       }
     });
   </script>
