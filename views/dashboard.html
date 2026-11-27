@@ -1402,13 +1402,6 @@
         header.classList.remove('header-hidden');
       }
 
-      function ocultarHeader() {
-        const actualY = window.scrollY || window.pageYOffset || 0;
-        if (actualY > umbralScroll && !header.matches(':hover')) {
-          header.classList.add('header-hidden');
-        }
-      }
-
       window.addEventListener('scroll', () => {
         const actualY = window.scrollY || window.pageYOffset || 0;
         const delta = actualY - ultimoScrollY;
@@ -1417,8 +1410,8 @@
           mostrarHeader();
         } else if (delta < -4) {
           mostrarHeader();
-        } else if (delta > 6) {
-          ocultarHeader();
+        } else if (delta > 6 && !header.matches(':hover')) {
+          header.classList.add('header-hidden');
         }
 
         ultimoScrollY = actualY;
@@ -1860,18 +1853,10 @@
       const q = document.getElementById('bitacoraBuscar').value.trim();
       const canalBitacora = document.getElementById('bitacoraCanal').value;
       const estatusBitacora = document.getElementById('bitacoraEstatus').value;
-      const canalFiltro = document.getElementById('filtroCanal').value;
-      const temaFiltro = document.getElementById('filtroTema').value;
-      const desdeFiltro = document.getElementById('filtroDesde').value;
-      const hastaFiltro = document.getElementById('filtroHasta').value;
 
-      const canalFinal = canalBitacora || canalFiltro;
       if (q) params.set('q', q);
-      if (canalFinal) params.set('id_canal', canalFinal);
+      if (canalBitacora) params.set('id_canal', canalBitacora);
       if (estatusBitacora) params.set('estatus', estatusBitacora);
-      if (temaFiltro) params.set('id_tema', temaFiltro);
-      if (desdeFiltro) params.set('desde', `${desdeFiltro}T00:00:00Z`);
-      if (hastaFiltro) params.set('hasta', `${hastaFiltro}T23:59:59Z`);
 
       const res = await fetch(`/api/interacciones?${params.toString()}`);
       if (!res.ok) return;
@@ -1960,11 +1945,10 @@
       renderDona(data.dona_polaridad);
       renderHeatmap(data.heatmap);
       renderSerieHistorica(data.serie_historica);
-      await cargarBitacora();
       registrarEvidencia(
         'Consulta histórica',
         `OK ${res.status}`,
-        `Actualizados indicadores (${data.kpis.interacciones_depuradas} registros), gráficas y bitácora.`
+        `Actualizados indicadores (${data.kpis.interacciones_depuradas} registros) y gráficas históricas sin alterar la bitácora.`
       );
     }
 
@@ -2142,6 +2126,7 @@
 
       await cargarCatalogos();
       await cargarAnaliticaHistoricaRest();
+      await cargarBitacora();
       await actualizarGraficaBitacoraEstatus();
       conectarWebSocket();
     }
