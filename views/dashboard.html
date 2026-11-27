@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de análisis — Community 360</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --abyss: #03060c;
+      --surface: #0b1120;
+      --surface-hi: #10192e;
+      --field: #050912;
+      --stroke: rgba(148, 163, 184, 0.16);
+      --stroke-hi: rgba(255, 255, 255, 0.22);
+      --text: #f8fafc;
+      --text-sec: #cbd5e1;
+      --text-mut: #94a3b8;
+      --cyan: #22d3ee;
+      --amber: #f59e0b;
+      --amber-hi: #fcd34d;
+      --violet: #a855f7;
+      --emerald: #10b981;
+      --rose: #f43f5e;
+      --control-h: 40px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--abyss);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(34, 211, 238, 0.12), transparent 36%),
+        radial-gradient(circle at 88% 10%, rgba(245, 158, 11, 0.1), transparent 38%),
+        radial-gradient(circle at 50% 95%, rgba(168, 85, 247, 0.1), transparent 45%),
+        radial-gradient(rgba(148, 163, 184, 0.11) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 30px 30px;
+      background-attachment: fixed;
+      color: var(--text);
+      margin: 0;
+      padding: 1.15rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    header.top {
+      position: sticky;
+      top: 0.65rem;
+      z-index: 35;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem 1.25rem;
+      background: rgba(8, 13, 25, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 0.85rem 1.2rem;
+      border-radius: 18px;
+      border: 1px solid var(--stroke-hi);
+      box-shadow: 0 20px 46px -22px rgba(0, 0, 0, 0.9);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    header.top::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2.5px;
+      border-radius: 18px 18px 0 0;
+      background: linear-gradient(90deg, var(--amber), var(--cyan), var(--violet), var(--emerald));
+    }
+
+    header.top.header-hidden {
+      transform: translateY(calc(-100% - 1.2rem));
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: none;
+    }
+
+    .brand-area {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.22rem;
+      min-width: 0;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-sq {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--amber), var(--cyan));
+      display: grid;
+      place-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.76rem;
+      color: #04070f;
+      box-shadow: 0 6px 16px -4px rgba(34, 211, 238, 0.45);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 1.16rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .brand-title span {
+      color: var(--cyan);
+    }
+
+    #sessionInfo {
+      color: var(--text-sec);
+      font-size: 0.76rem;
+      line-height: 1.3;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-strip {
+      order: 3;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--field);
+      padding: 0.28rem;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+    }
+
+    .nav-strip a {
+      text-decoration: none;
+      text-align: center;
+      color: var(--text-mut);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.42rem 0.65rem;
+      border-radius: 9px;
+      white-space: nowrap;
+      transition: color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .nav-strip a:hover {
+      color: #ffffff;
+      background: rgba(148, 163, 184, 0.16);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      height: 34px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0 0.8rem;
+      border-radius: 999px;
+      background: rgba(51, 65, 85, 0.5);
+      color: var(--text-sec);
+      border: 1px solid var(--stroke);
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    .badge.connected {
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border-color: rgba(16, 185, 129, 0.45);
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.2);
+    }
+
+    .badge.connected::before {
+      background: var(--emerald);
+      box-shadow: 0 0 10px var(--emerald);
+      animation: pulseLive 1.8s infinite;
+    }
+
+    @keyframes pulseLive {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.4);
+        opacity: 0.6;
+      }
+    }
+
+    button,
+    select,
+    input {
+      font-family: inherit;
+      font-size: 0.85rem;
+      height: var(--control-h);
+      line-height: 1;
+      border-radius: 11px;
+      border: 1px solid var(--stroke);
+      background: var(--field);
+      color: #ffffff;
+      padding: 0 0.85rem;
+      margin: 0;
+      vertical-align: middle;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    header.top button {
+      height: 34px;
+      font-size: 0.78rem;
+      padding: 0 0.8rem;
+      border-radius: 9px;
+    }
+
+    select:hover,
+    input:hover {
+      border-color: rgba(148, 163, 184, 0.34);
+    }
+
+    select:focus,
+    input:focus,
+    button:focus-visible {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18);
+    }
+
+    button {
+      cursor: pointer;
+      background: #111b31;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    button:hover {
+      background: #1a2947;
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button.primary {
+      background: linear-gradient(135deg, var(--amber-hi) 0%, var(--amber) 45%, var(--cyan) 100%);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #050811;
+      font-weight: 800;
+      box-shadow: 0 10px 24px -8px rgba(245, 158, 11, 0.55);
+    }
+
+    button.primary:hover {
+      filter: brightness(1.06);
+      box-shadow: 0 14px 28px -8px rgba(34, 211, 238, 0.65);
+    }
+
+    button.ghost-danger:hover {
+      border-color: rgba(244, 63, 94, 0.5);
+      color: #fecdd3;
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.05rem;
+    }
+
+    .kpi {
+      --kpi-accent: var(--cyan);
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      border-left: 4px solid var(--kpi-accent);
+      border-radius: 18px;
+      padding: 1.2rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .kpi-cyan {
+      --kpi-accent: var(--cyan);
+    }
+
+    .kpi-amber {
+      --kpi-accent: var(--amber);
+    }
+
+    .kpi-violet {
+      --kpi-accent: var(--violet);
+    }
+
+    .kpi-emerald {
+      --kpi-accent: var(--emerald);
+    }
+
+    .kpi:hover {
+      transform: translateY(-3px);
+      background: var(--surface-hi);
+      border-color: var(--stroke-hi);
+      border-left-color: var(--kpi-accent);
+      box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.85);
+    }
+
+    .kpi.kpi-flash {
+      animation: kpiHighlight 0.65s ease;
+    }
+
+    @keyframes kpiHighlight {
+      0% {
+        box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55);
+      }
+
+      100% {
+        box-shadow: 0 0 0 12px rgba(34, 211, 238, 0);
+      }
+    }
+
+    .kpi-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .kpi .label {
+      color: var(--text-sec);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .kpi-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.16rem 0.45rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--kpi-accent);
+    }
+
+    .kpi .val {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0.42rem 0 0.25rem;
+      color: #ffffff;
+    }
+
+    .sentiment-track {
+      height: 6px;
+      width: 100%;
+      background: rgba(148, 163, 184, 0.18);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 0.35rem;
+    }
+
+    .sentiment-bar {
+      height: 100%;
+      width: 50%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--rose), var(--amber), var(--emerald));
+      transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      padding: 1.35rem;
+      box-shadow: 0 20px 42px -22px rgba(0, 0, 0, 0.8);
+      transition: border-color 0.22s ease;
+    }
+
+    .panel:hover {
+      border-color: rgba(148, 163, 184, 0.28);
+    }
+
+    .panel-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+      min-height: var(--control-h);
+    }
+
+    .panel-title-group {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.22rem;
+    }
+
+    .panel-subtitle {
+      margin: 0;
+      padding-left: 0.9rem;
+      font-size: 0.78rem;
+      color: var(--text-mut);
+    }
+
+    .panel h2 {
+      margin: 0;
+      font-size: 1.04rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: #ffffff;
+    }
+
+    .panel h2::before {
+      content: "";
+      width: 6px;
+      height: 18px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, var(--amber), var(--cyan));
+      flex-shrink: 0;
+    }
+
+    .quick-ranges {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .chip-btn {
+      height: 36px;
+      font-size: 0.78rem;
+      padding: 0 0.9rem;
+      border-radius: 999px;
+      background: var(--field);
+      color: var(--text-sec);
+      border: 1px solid var(--stroke);
+    }
+
+    .chip-btn:hover,
+    .chip-btn.active {
+      color: #050811;
+      border-color: var(--cyan);
+      background: var(--cyan);
+      font-weight: 700;
+    }
+
+    .filtros-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: end;
+    }
+
+    .filtros-grid label {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 0.42rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-sec);
+      margin: 0;
+    }
+
+    .filtros-grid label select,
+    .filtros-grid label input {
+      width: 100%;
+      height: var(--control-h);
+    }
+
+    .filtros-actions {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+      align-items: center;
+      height: var(--control-h);
+      margin-top: 0.1rem;
+    }
+
+    .filtros-actions button {
+      width: 100%;
+      height: var(--control-h);
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .chart-box {
+      position: relative;
+      height: 290px;
+      width: 100%;
+    }
+
+    .donut-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      padding-bottom: 18px;
+    }
+
+    .donut-center strong {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .donut-center span {
+      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-sec);
+      text-transform: uppercase;
+    }
+
+    .polarity-pills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.55rem;
+      margin-top: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+    }
+
+    .pol-item {
+      background: var(--field);
+      border: 1px solid var(--stroke);
+      border-radius: 10px;
+      padding: 0.45rem 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pol-pos {
+      border-bottom: 2px solid var(--emerald);
+      color: #6ee7b7;
+    }
+
+    .pol-neu {
+      border-bottom: 2px solid var(--amber);
+      color: var(--amber-hi);
+    }
+
+    .pol-neg {
+      border-bottom: 2px solid var(--rose);
+      color: #fecdd3;
+    }
+
+    .heatmap-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.78rem;
+      color: var(--text-sec);
+    }
+
+    .hm-legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hm-scale {
+      display: inline-flex;
+      gap: 3px;
+    }
+
+    .hm-scale i {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .hm-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .hm-inspector {
+      display: inline-flex;
+      align-items: center;
+      height: 30px;
+      padding: 0 0.72rem;
+      border-radius: 9px;
+      background: var(--field);
+      border: 1px solid rgba(245, 158, 11, 0.38);
+      color: var(--amber-hi);
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.73rem;
+    }
+
+    .btn-tiny {
+      height: 30px;
+      font-size: 0.72rem;
+      padding: 0 0.62rem;
+      border-radius: 8px;
+      background: var(--field);
+      color: var(--text-sec);
+    }
+
+    .heatmap-wrapper {
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    .heatmap-grid {
+      display: grid;
+      grid-template-columns: 56px repeat(24, minmax(25px, 1fr));
+      gap: 3px;
+      min-width: 700px;
+      font-size: 0.7rem;
+    }
+
+    .hm-head,
+    .hm-day {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-sec);
+      font-weight: 700;
+      padding: 0.22rem;
+      border-radius: 4px;
+      transition: color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .hm-head.active,
+    .hm-day.active {
+      color: #050811;
+      background: var(--amber-hi);
+    }
+
+    .hm-cell {
+      height: 28px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      cursor: pointer;
+      transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .hm-cell:hover {
+      transform: scale(1.18);
+      z-index: 3;
+      border-color: #ffffff;
+      box-shadow: 0 4px 14px rgba(34, 211, 238, 0.55);
+    }
+
+    .hm-cell.selected {
+      outline: 2px solid var(--amber-hi);
+      outline-offset: -1px;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.55);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      max-height: 380px;
+      overflow-y: auto;
+      border-radius: 13px;
+      border: 1px solid var(--stroke);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: #070c18;
+      z-index: 2;
+      text-align: left;
+      padding: 0.72rem 0.85rem;
+      border-bottom: 1px solid var(--stroke);
+      color: var(--text-sec);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.71rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    td {
+      text-align: left;
+      padding: 0.68rem 0.85rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.09);
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    tbody tr {
+      animation: rowSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: background-color 0.15s ease;
+    }
+
+    tbody tr:hover {
+      background: rgba(34, 211, 238, 0.06);
+    }
+
+    @keyframes rowSlide {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    code {
+      background: var(--field);
+      border: 1px solid var(--stroke);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+    }
+
+    .pill-status {
+      display: inline-block;
+      padding: 0.22rem 0.58rem;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.71rem;
+      font-weight: 700;
+      background: rgba(168, 85, 247, 0.18);
+      color: #e9d5ff;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    .pill-status.live {
+      background: rgba(16, 185, 129, 0.16);
+      color: #6ee7b7;
+      border-color: rgba(16, 185, 129, 0.42);
+    }
+
+    .pill-status.warn {
+      background: rgba(245, 158, 11, 0.18);
+      color: var(--amber-hi);
+      border-color: rgba(245, 158, 11, 0.45);
+    }
+
+    .pill-status.err {
+      background: rgba(244, 63, 94, 0.18);
+      color: #fecdd3;
+      border-color: rgba(244, 63, 94, 0.45);
+    }
+
+    .ev-counter {
+      display: inline-flex;
+      align-items: center;
+      height: 30px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--amber-hi);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 0 0.7rem;
+      border-radius: 999px;
+    }
+
+    .bitacora-controls {
+      display: grid;
+      grid-template-columns: minmax(210px, 1.25fr) repeat(2, minmax(165px, 1fr));
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .bitacora-controls input,
+    .bitacora-controls select {
+      width: 100%;
+      height: var(--control-h);
+    }
+
+    .tema-label {
+      display: inline-block;
+      padding: 0.24rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: rgba(34, 211, 238, 0.14);
+      color: var(--cyan);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+      white-space: nowrap;
+    }
+
+    .sent-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    .sent-pos {
+      color: #6ee7b7;
+    }
+
+    .sent-neu {
+      color: var(--amber-hi);
+    }
+
+    .sent-neg {
+      color: #fda4af;
+    }
+
+    .bitacora-row {
+      cursor: pointer;
+    }
+
+    .bitacora-row.selected-row {
+      background: rgba(34, 211, 238, 0.12);
+    }
+
+    .bitacora-muted {
+      color: var(--text-mut);
+      font-style: italic;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.15rem;
+      background: rgba(2, 5, 11, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-card {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      background: var(--surface);
+      border: 1px solid var(--stroke-hi);
+      border-radius: 20px;
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 28px 65px -16px rgba(0, 0, 0, 0.95);
+      transform: translateY(10px) scale(0.985);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .modal-backdrop.open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, var(--amber), var(--cyan), var(--violet), var(--emerald));
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid var(--stroke);
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-head h3 {
+      margin: 0;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .modal-head h3::before {
+      content: "";
+      width: 6px;
+      height: 18px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, var(--amber), var(--cyan));
+      flex-shrink: 0;
+    }
+
+    .modal-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    .modal-rows {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.72rem 0.15rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      font-size: 0.85rem;
+    }
+
+    .modal-row span {
+      color: var(--text-mut);
+      font-weight: 600;
+    }
+
+    .modal-row strong,
+    .modal-row .modal-val {
+      color: var(--text);
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .modal-text-block {
+      padding: 0.85rem 0.15rem 1rem;
+    }
+
+    .modal-text-label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-mut);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-content-text {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    .modal-foot {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 0.25rem;
+    }
+
+    .modal-foot button {
+      height: var(--control-h);
+      min-width: 120px;
+    }
+
+    @media (max-width: 1024px) {
+      .kpis {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .filtros-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .bitacora-controls {
+        width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 780px) {
+
+      .kpis,
+      .charts-grid,
+      .filtros-grid,
+      .filtros-actions,
+      .bitacora-controls {
+        grid-template-columns: 1fr;
+      }
+
+      .filtros-actions {
+        height: auto;
+      }
+
+      .brand-area,
+      .actions {
+        width: 100%;
+      }
+
+      .nav-strip {
+        display: none;
+      }
+
+      .bitacora-controls {
+        width: 100%;
+      }
+
+      .modal-foot button {
+        width: 100%;
+      }
+
+      body {
+        padding: 0.85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="top" id="topHeader">
+      <div class="brand-area">
+        <div class="brand-row">
+          <div class="logo-sq">360</div>
+          <h1 class="brand-title">Community <span>360</span> · Análisis</h1>
+        </div>
+        <small id="sessionInfo">Cargando sesión...</small>
+      </div>
+
+      <div class="actions">
+        <span id="wsStatus" class="badge">Tiempo real: Desconectado</span>
+        <button id="pingWsBtn" type="button" title="Probar conexión en tiempo real">Probar conexión</button>
+        <button id="logoutBtn" class="ghost-danger" type="button">Cerrar sesión</button>
+      </div>
+
+      <nav class="nav-strip" aria-label="Secciones">
+        <a href="#secKpis">Indicadores</a>
+        <a href="#secFiltros">Histórico</a>
+        <a href="#secGraficas">Gráficas</a>
+        <a href="#secHeatmap">Mapa de calor</a>
+        <a href="#secBitacora">Bitácora</a>
+        <a href="#secEvidencias">Actividad</a>
+      </nav>
+    </header>
+
+    <!-- Indicadores dinámicos -->
+    <section class="kpis" id="secKpis">
+      <div class="kpi kpi-cyan" id="kpiCardInteracciones">
+        <div class="kpi-top">
+          <span class="label">Interacciones depuradas</span>
+          <span class="kpi-tag">VOLUMEN</span>
+        </div>
+        <span id="kpiInteracciones" class="val">—</span>
+      </div>
+
+      <div class="kpi kpi-amber" id="kpiCardSentimiento">
+        <div class="kpi-top">
+          <span class="label">Sentimiento promedio</span>
+          <span class="kpi-tag">SENTIMIENTO</span>
+        </div>
+        <span id="kpiSentimiento" class="val">—</span>
+        <div class="sentiment-track" title="Escala de sentimiento de -1.0 a 1.0">
+          <div id="sentimentFill" class="sentiment-bar"></div>
+        </div>
+      </div>
+
+      <div class="kpi kpi-violet" id="kpiCardReacciones">
+        <div class="kpi-top">
+          <span class="label">Reacciones totales</span>
+          <span class="kpi-tag">IMPACTO</span>
+        </div>
+        <span id="kpiReacciones" class="val">—</span>
+      </div>
+
+      <div class="kpi kpi-emerald" id="kpiCardEngagement">
+        <div class="kpi-top">
+          <span class="label">Participación promedio</span>
+          <span class="kpi-tag">PARTICIPACIÓN</span>
+        </div>
+        <span id="kpiEngagement" class="val">—</span>
+      </div>
+    </section>
+
+    <!-- Filtros de consulta histórica -->
+    <section class="panel" id="secFiltros">
+      <div class="panel-head">
+        <h2>Consulta histórica</h2>
+        <div class="quick-ranges">
+          <button type="button" class="chip-btn" data-days="30">Últimos 30 días</button>
+          <button type="button" class="chip-btn active" data-days="all">Todo el historial</button>
+        </div>
+      </div>
+
+      <div class="filtros-grid">
+        <label>
+          Canal
+          <select id="filtroCanal">
+            <option value="">Todos los canales</option>
+          </select>
+        </label>
+        <label>
+          Tema
+          <select id="filtroTema">
+            <option value="">Todos los temas</option>
+          </select>
+        </label>
+        <label>
+          Desde
+          <input id="filtroDesde" type="date" />
+        </label>
+        <label>
+          Hasta
+          <input id="filtroHasta" type="date" />
+        </label>
+        <div class="filtros-actions">
+          <button id="btnAplicarFiltros" class="primary" type="button">Consultar</button>
+          <button id="btnLimpiarFiltros" type="button">Limpiar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gráficas de barras por canal y dona de sentimiento -->
+    <section class="charts-grid" id="secGraficas">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Interacciones y reacciones por canal</h2>
+        </div>
+        <div class="chart-box">
+          <canvas id="chartBarras"></canvas>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Distribución por tipo de sentimiento</h2>
+        </div>
+        <div class="chart-box">
+          <canvas id="chartDona"></canvas>
+          <div class="donut-center">
+            <strong id="donutTotal">—</strong>
+            <span>Total</span>
+          </div>
+        </div>
+        <div class="polarity-pills">
+          <div class="pol-item pol-pos"><span>Positivo</span><strong id="pctPos">0%</strong></div>
+          <div class="pol-item pol-neu"><span>Neutro</span><strong id="pctNeu">0%</strong></div>
+          <div class="pol-item pol-neg"><span>Negativo</span><strong id="pctNeg">0%</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mapa de calor -->
+    <section class="panel" id="secHeatmap">
+      <div class="panel-head">
+        <h2>Mapa de calor: Día de la semana vs. Hora</h2>
+        <div class="heatmap-toolbar" style="margin-bottom:0;">
+          <span class="hm-legend">
+            Baja
+            <span class="hm-scale">
+              <i style="background:rgba(34,211,238,0.12)"></i>
+              <i style="background:rgba(34,211,238,0.42)"></i>
+              <i style="background:rgba(245,158,11,0.72)"></i>
+              <i style="background:rgba(168,85,247,0.92)"></i>
+            </span>
+            Alta
+          </span>
+          <div class="hm-controls">
+            <span id="hmInspector" class="hm-inspector">Pasa o haz clic en una celda</span>
+            <button id="clearHmSelBtn" class="btn-tiny" type="button" style="display:none;">Quitar fijado</button>
+          </div>
+        </div>
+      </div>
+      <div class="heatmap-wrapper">
+        <div id="heatmapContainer" class="heatmap-grid"></div>
+      </div>
+    </section>
+
+    <!-- Serie histórica diaria -->
+    <section class="panel" id="secSerie">
+      <div class="panel-head">
+        <h2>Serie histórica diaria de interacciones</h2>
+      </div>
+      <div class="chart-box">
+        <canvas id="chartSerie"></canvas>
+      </div>
+    </section>
+
+    <!-- Bitácora de interacciones + Gráfica de estado de usuario -->
+    <section class="panel" id="secBitacora">
+      <div class="panel-head">
+        <div class="panel-title-group">
+          <h2>Bitácora de interacciones</h2>
+          <p class="panel-subtitle">Haz clic en un registro para abrir su ventana de detalle; combina buscador, canal y
+            estado.</p>
+        </div>
+        <div class="bitacora-controls">
+          <input id="bitacoraBuscar" type="search" placeholder="Buscar por identificador, usuario o mensaje..." />
+          <select id="bitacoraCanal" aria-label="Filtrar por canal en bitácora">
+            <option value="">Todos los canales</option>
+          </select>
+          <select id="bitacoraEstatus" aria-label="Filtrar por estado de usuario">
+            <option value="">Todos los estados</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Identificador</th>
+              <th>Usuario</th>
+              <th>Canal</th>
+              <th>Tema</th>
+              <th>Dispositivo</th>
+              <th>Sentimiento</th>
+              <th>Contenido</th>
+            </tr>
+          </thead>
+          <tbody id="bitacoraBody"></tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 1.35rem; padding-top: 1.15rem; border-top: 1px solid var(--stroke);">
+        <div class="panel-head" style="margin-bottom: 0.75rem;">
+          <h2>Interacciones y usuarios por estado</h2>
+        </div>
+        <div class="chart-box">
+          <canvas id="chartEstatusUsuario"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registro de actividad y actualizaciones -->
+    <section class="panel" id="secEvidencias">
+      <div class="panel-head">
+        <h2>Registro de consultas y actualizaciones en tiempo real</h2>
+        <span id="evCounter" class="ev-counter">0 eventos</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Hora</th>
+              <th>Origen</th>
+              <th>Estado</th>
+              <th>Cambio en el panel</th>
+            </tr>
+          </thead>
+          <tbody id="evidenciasBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Ventana modal uniforme al seleccionar un usuario o registro de la Bitácora -->
+  <div id="modalBitacora" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalBitacoraTitulo">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modalBitacoraTitulo">Detalle de interacción</h3>
+        <span id="modalRegistroId" class="modal-id">—</span>
+      </div>
+
+      <div class="modal-rows">
+        <div class="modal-row">
+          <span>Usuario</span>
+          <strong id="modalUsuario">—</strong>
+        </div>
+        <div class="modal-row">
+          <span>Canal</span>
+          <span id="modalCanal" class="modal-val">—</span>
+        </div>
+        <div class="modal-row">
+          <span>Tema</span>
+          <span id="modalTema" class="modal-val">—</span>
+        </div>
+        <div class="modal-row">
+          <span>Dispositivo</span>
+          <span id="modalDispositivo" class="modal-val">—</span>
+        </div>
+        <div class="modal-row">
+          <span>Sentimiento</span>
+          <span id="modalSentimiento" class="sent-val">—</span>
+        </div>
+        <div class="modal-row">
+          <span>Reacciones</span>
+          <span id="modalReacciones" class="modal-val">—</span>
+        </div>
+      </div>
+
+      <div class="modal-text-block">
+        <span class="modal-text-label">Contenido de la interacción</span>
+        <p id="modalContenido" class="modal-content-text">—</p>
+      </div>
+
+      <div class="modal-foot">
+        <button id="cerrarModalBtn" class="primary" type="button">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DIAS_SEMANA = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+    let wsSocket = null;
+    let chartBarras = null;
+    let chartDona = null;
+    let chartSerie = null;
+    let chartEstatusUsuario = null;
+    let totalEvidencias = 0;
+    let celdaFijada = null;
+    let ultimaSerieEstatus = [];
+
+    (function configurarHeaderScrollInteligente() {
+      const header = document.getElementById('topHeader');
+      if (!header) return;
+
+      let ultimoScrollY = window.scrollY || window.pageYOffset || 0;
+      let timerPausa = null;
+      const umbralScroll = 60;
+
+      function mostrarHeader() {
+        header.classList.remove('header-hidden');
+      }
+
+      function ocultarHeader() {
+        const actualY = window.scrollY || window.pageYOffset || 0;
+        if (actualY > umbralScroll && !header.matches(':hover')) {
+          header.classList.add('header-hidden');
+        }
+      }
+
+      window.addEventListener('scroll', () => {
+        const actualY = window.scrollY || window.pageYOffset || 0;
+        const delta = actualY - ultimoScrollY;
+
+        if (actualY <= umbralScroll) {
+          mostrarHeader();
+        } else if (delta < -4) {
+          mostrarHeader();
+        } else if (delta > 6) {
+          ocultarHeader();
+        }
+
+        ultimoScrollY = actualY;
+
+        if (timerPausa) clearTimeout(timerPausa);
+        timerPausa = setTimeout(() => {
+          mostrarHeader();
+        }, 320);
+      }, { passive: true });
+    })();
+
+    function formatearEtiquetaLegible(valor) {
+      if (valor === null || valor === undefined) return '—';
+      const limpio = String(valor)
+        .replace(/[_-]+/g, ' ')
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (!limpio) return '—';
+      return limpio.charAt(0).toUpperCase() + limpio.slice(1);
+    }
+
+    function formatearUsuarioBitacora(aliasUsuario, idUsuario) {
+      const alias = aliasUsuario ? String(aliasUsuario).trim() : '';
+      const id = idUsuario ? String(idUsuario).trim() : '';
+      return alias || id || '';
+    }
+
+    function abrirModalBitacora(item, trElement) {
+      document.querySelectorAll('#bitacoraBody tr.selected-row').forEach((row) => {
+        row.classList.remove('selected-row');
+      });
+      if (trElement) trElement.classList.add('selected-row');
+
+      const sentNum = Number(item.sentimiento) || 0;
+      const usuarioTexto = formatearUsuarioBitacora(item.alias_usuario, item.id_usuario);
+      const sentEl = document.getElementById('modalSentimiento');
+
+      document.getElementById('modalRegistroId').textContent = item.id_interaccion || '—';
+      document.getElementById('modalUsuario').textContent = usuarioTexto || '—';
+      document.getElementById('modalCanal').textContent = formatearEtiquetaLegible(item.canal);
+      document.getElementById('modalTema').textContent = formatearEtiquetaLegible(item.tema);
+      document.getElementById('modalDispositivo').textContent = formatearEtiquetaLegible(item.dispositivo);
+      document.getElementById('modalReacciones').textContent = String(Number(item.reacciones_recibidas) || 0);
+
+      sentEl.textContent = sentNum.toFixed(2);
+      sentEl.className = `sent-val ${claseSentimiento(sentNum)}`;
+
+      const contenidoEl = document.getElementById('modalContenido');
+      if (item.texto && String(item.texto).trim()) {
+        contenidoEl.className = 'modal-content-text';
+        contenidoEl.textContent = item.texto;
+      } else {
+        contenidoEl.className = 'modal-content-text bitacora-muted';
+        contenidoEl.textContent = 'Sin texto (reacción)';
+      }
+
+      const modal = document.getElementById('modalBitacora');
+      modal.classList.add('open');
+    }
+
+    function cerrarModalBitacora() {
+      const modal = document.getElementById('modalBitacora');
+      modal.classList.remove('open');
+      document.querySelectorAll('#bitacoraBody tr.selected-row').forEach((row) => {
+        row.classList.remove('selected-row');
+      });
+    }
+
+    function etiquetaEstadoRespuesta(estadoHttp) {
+      const s = String(estadoHttp).toUpperCase();
+      if (s.includes('LIVE') || s.includes('OPEN') || s.includes('200') || s.includes('OK')) {
+        return { texto: 'Correcto', clase: 'live' };
+      }
+      if (s.includes('400') || s.includes('401') || s.includes('404')) {
+        return { texto: 'Revisar', clase: 'warn' };
+      }
+      if (s.includes('500') || s.includes('ERROR')) {
+        return { texto: 'Error', clase: 'err' };
+      }
+      return { texto: 'Registrado', clase: '' };
+    }
+
+    function registrarEvidencia(origen, estadoHttp, cambio) {
+      const tbody = document.getElementById('evidenciasBody');
+      const tr = document.createElement('tr');
+      const hora = new Date().toLocaleTimeString();
+      const estadoInfo = etiquetaEstadoRespuesta(estadoHttp);
+      tr.innerHTML = `
+        <td>${hora}</td>
+        <td>${formatearEtiquetaLegible(origen)}</td>
+        <td><span class="pill-status ${estadoInfo.clase}">${estadoInfo.texto}</span></td>
+        <td>${cambio}</td>
+      `;
+      tbody.prepend(tr);
+      while (tbody.children.length > 25) {
+        tbody.removeChild(tbody.lastChild);
+      }
+      totalEvidencias += 1;
+      const counter = document.getElementById('evCounter');
+      if (counter) counter.textContent = `${totalEvidencias} ${totalEvidencias === 1 ? 'evento' : 'eventos'}`;
+    }
+
+    function dispararFlashKpis() {
+      for (const id of ['kpiCardInteracciones', 'kpiCardSentimiento', 'kpiCardReacciones', 'kpiCardEngagement']) {
+        const card = document.getElementById(id);
+        if (!card) continue;
+        card.classList.remove('kpi-flash');
+        void card.offsetWidth;
+        card.classList.add('kpi-flash');
+      }
+    }
+
+    function animarNumero(el, targetVal, decimals = 0) {
+      const target = Number(targetVal) || 0;
+      const current = Number(String(el.textContent).replace(/,/g, ''));
+      if (Number.isNaN(current)) {
+        el.textContent = decimals > 0 ? target.toFixed(decimals) : String(Math.round(target));
+        return;
+      }
+      const duration = 360;
+      const start = performance.now();
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const val = current + (target - current) * eased;
+        el.textContent = decimals > 0 ? val.toFixed(decimals) : String(Math.round(val));
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    function actualizarKpis(kpis) {
+      if (!kpis) return;
+      animarNumero(document.getElementById('kpiInteracciones'), kpis.interacciones_depuradas, 0);
+      animarNumero(document.getElementById('kpiSentimiento'), kpis.sentimiento_promedio, 4);
+      animarNumero(document.getElementById('kpiReacciones'), kpis.total_reacciones, 0);
+      animarNumero(document.getElementById('kpiEngagement'), kpis.engagement_promedio, 2);
+
+      const sent = Math.max(-1, Math.min(1, Number(kpis.sentimiento_promedio) || 0));
+      const pct = ((sent + 1) / 2) * 100;
+      const fill = document.getElementById('sentimentFill');
+      if (fill) fill.style.width = `${pct.toFixed(1)}%`;
+
+      dispararFlashKpis();
+    }
+
+    function renderBarras(barrasCanales = []) {
+      const labels = barrasCanales.map((b) => formatearEtiquetaLegible(b.etiqueta));
+      const totales = barrasCanales.map((b) => b.total_interacciones);
+      const reacciones = barrasCanales.map((b) => b.total_reacciones);
+
+      const ctx = document.getElementById('chartBarras').getContext('2d');
+      if (chartBarras) chartBarras.destroy();
+
+      const gradCyan = ctx.createLinearGradient(0, 0, 0, 290);
+      gradCyan.addColorStop(0, 'rgba(34, 211, 238, 0.92)');
+      gradCyan.addColorStop(1, 'rgba(34, 211, 238, 0.35)');
+
+      const gradAmber = ctx.createLinearGradient(0, 0, 0, 290);
+      gradAmber.addColorStop(0, 'rgba(245, 158, 11, 0.92)');
+      gradAmber.addColorStop(1, 'rgba(245, 158, 11, 0.35)');
+
+      chartBarras = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'Interacciones',
+              data: totales,
+              backgroundColor: gradCyan,
+              borderColor: '#67e8f9',
+              borderWidth: 1,
+              borderRadius: 8,
+            },
+            {
+              label: 'Reacciones',
+              data: reacciones,
+              backgroundColor: gradAmber,
+              borderColor: '#fcd34d',
+              borderWidth: 1,
+              borderRadius: 8,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { labels: { color: '#f8fafc', usePointStyle: true } } },
+          scales: {
+            x: { ticks: { color: '#cbd5e1' }, grid: { color: 'rgba(148, 163, 184, 0.08)' } },
+            y: { beginAtZero: true, ticks: { color: '#cbd5e1' }, grid: { color: 'rgba(148, 163, 184, 0.16)' } },
+          },
+        },
+      });
+    }
+
+    function renderDona(donaData) {
+      const p = donaData?.totales || donaData || { positivo: 0, neutro: 0, negativo: 0 };
+      const pos = Math.max(0, Number(p.positivo) || 0);
+      const neu = Math.max(0, Number(p.neutro) || 0);
+      const neg = Math.max(0, Number(p.negativo) || 0);
+      const total = pos + neu + neg;
+
+      const centerEl = document.getElementById('donutTotal');
+      if (centerEl) centerEl.textContent = String(total);
+
+      const pctPosVal = donaData?.porcentajes?.positivo ?? (total > 0 ? ((pos / total) * 100).toFixed(1) : 0);
+      const pctNeuVal = neu === 0
+        ? '0.0'
+        : (donaData?.porcentajes?.neutro ?? (total > 0 ? ((neu / total) * 100).toFixed(1) : 0));
+      const pctNegVal = donaData?.porcentajes?.negativo ?? (total > 0 ? ((neg / total) * 100).toFixed(1) : 0);
+
+      document.getElementById('pctPos').textContent = `${pctPosVal}%`;
+      document.getElementById('pctNeu').textContent = `${pctNeuVal}%`;
+      document.getElementById('pctNeg').textContent = `${pctNegVal}%`;
+
+      const ctx = document.getElementById('chartDona').getContext('2d');
+      if (chartDona) chartDona.destroy();
+      chartDona = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Positivo', 'Neutro', 'Negativo'],
+          datasets: [
+            {
+              data: [pos, neu, neg],
+              backgroundColor: ['#10b981', '#f59e0b', '#f43f5e'],
+              borderColor: '#0b1120',
+              borderWidth: 3,
+              hoverOffset: 10,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '68%',
+          plugins: {
+            legend: { position: 'bottom', labels: { color: '#f8fafc', padding: 14, usePointStyle: true } },
+          },
+        },
+      });
+    }
+
+    function renderHeatmap(heatmapRows = []) {
+      const container = document.getElementById('heatmapContainer');
+      const inspector = document.getElementById('hmInspector');
+      const clearBtn = document.getElementById('clearHmSelBtn');
+      container.innerHTML = '';
+
+      const matriz = Array.from({ length: 7 }, () => Array(24).fill(0));
+      let maxVal = 0;
+
+      for (const row of heatmapRows) {
+        const dIdx = Number(row.dia_iso) - 1;
+        const hIdx = Number(row.hora_utc);
+        const cant = Number(row.cantidad) || 0;
+        if (dIdx >= 0 && dIdx < 7 && hIdx >= 0 && hIdx < 24) {
+          matriz[dIdx][hIdx] = cant;
+          if (cant > maxVal) maxVal = cant;
+        }
+      }
+
+      const headEls = [];
+      const dayEls = [];
+
+      container.appendChild(document.createElement('div'));
+      for (let h = 0; h < 24; h++) {
+        const th = document.createElement('div');
+        th.className = 'hm-head';
+        th.textContent = String(h).padStart(2, '0');
+        container.appendChild(th);
+        headEls.push(th);
+      }
+
+      for (let d = 0; d < 7; d++) {
+        const dayLabel = document.createElement('div');
+        dayLabel.className = 'hm-day';
+        dayLabel.textContent = DIAS_SEMANA[d].slice(0, 3);
+        container.appendChild(dayLabel);
+        dayEls.push(dayLabel);
+
+        for (let h = 0; h < 24; h++) {
+          const val = matriz[d][h];
+          const intensity = maxVal > 0 ? val / maxVal : 0;
+          const horaStr = `${String(h).padStart(2, '0')}:00`;
+          const textoCelda = `${DIAS_SEMANA[d]} · ${horaStr} → ${val} ${val === 1 ? 'interacción' : 'interacciones'}`;
+
+          const cell = document.createElement('div');
+          cell.className = 'hm-cell';
+
+          if (val === 0) {
+            cell.style.backgroundColor = 'rgba(148, 163, 184, 0.06)';
+          } else if (intensity > 0.75) {
+            cell.style.backgroundColor = `rgba(168, 85, 247, ${(0.58 + intensity * 0.38).toFixed(2)})`;
+          } else if (intensity > 0.4) {
+            cell.style.backgroundColor = `rgba(245, 158, 11, ${(0.45 + intensity * 0.45).toFixed(2)})`;
+          } else {
+            cell.style.backgroundColor = `rgba(34, 211, 238, ${(0.28 + intensity * 0.6).toFixed(2)})`;
+          }
+
+          if (celdaFijada && celdaFijada.d === d && celdaFijada.h === h) {
+            cell.classList.add('selected');
+            if (inspector) inspector.textContent = `Seleccionado: ${textoCelda}`;
+          }
+
+          cell.title = textoCelda;
+          cell.textContent = val > 0 ? val : '';
+
+          cell.addEventListener('mouseenter', () => {
+            dayEls[d].classList.add('active');
+            headEls[h].classList.add('active');
+            if (!celdaFijada && inspector) {
+              inspector.textContent = textoCelda;
+            }
+          });
+
+          cell.addEventListener('mouseleave', () => {
+            dayEls[d].classList.remove('active');
+            headEls[h].classList.remove('active');
+          });
+
+          cell.addEventListener('click', () => {
+            container.querySelectorAll('.hm-cell.selected').forEach((el) => el.classList.remove('selected'));
+            celdaFijada = { d, h };
+            cell.classList.add('selected');
+            if (inspector) inspector.textContent = `Seleccionado: ${textoCelda}`;
+            if (clearBtn) clearBtn.style.display = 'inline-flex';
+          });
+
+          container.appendChild(cell);
+        }
+      }
+    }
+
+    function renderSerieHistorica(serie = []) {
+      const ctx = document.getElementById('chartSerie').getContext('2d');
+      if (chartSerie) chartSerie.destroy();
+
+      const grad = ctx.createLinearGradient(0, 0, 0, 290);
+      grad.addColorStop(0, 'rgba(34, 211, 238, 0.38)');
+      grad.addColorStop(1, 'rgba(168, 85, 247, 0.02)');
+
+      chartSerie = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: serie.map((s) => s.fecha),
+          datasets: [
+            {
+              label: 'Interacciones por día',
+              data: serie.map((s) => s.total_interacciones),
+              borderColor: '#22d3ee',
+              backgroundColor: grad,
+              pointBackgroundColor: '#fcd34d',
+              pointBorderColor: '#03060c',
+              pointRadius: 3.5,
+              pointHoverRadius: 6,
+              fill: true,
+              tension: 0.34,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { labels: { color: '#f8fafc', usePointStyle: true } } },
+          scales: {
+            x: { ticks: { color: '#cbd5e1' }, grid: { color: 'rgba(148, 163, 184, 0.08)' } },
+            y: { beginAtZero: true, ticks: { color: '#cbd5e1' }, grid: { color: 'rgba(148, 163, 184, 0.16)' } },
+          },
+        },
+      });
+    }
+
+    function renderEstatusUsuarioChart(items = [], estatusSeleccionado = '') {
+      const filtrados = estatusSeleccionado
+        ? items.filter((r) => String(r.etiqueta).trim().toLowerCase() === estatusSeleccionado.trim().toLowerCase())
+        : items;
+
+      const ctx = document.getElementById('chartEstatusUsuario').getContext('2d');
+      if (chartEstatusUsuario) chartEstatusUsuario.destroy();
+
+      const gradCyan = ctx.createLinearGradient(0, 0, 0, 290);
+      gradCyan.addColorStop(0, 'rgba(34, 211, 238, 0.92)');
+      gradCyan.addColorStop(1, 'rgba(34, 211, 238, 0.35)');
+
+      const gradViolet = ctx.createLinearGradient(0, 0, 0, 290);
+      gradViolet.addColorStop(0, 'rgba(168, 85, 247, 0.92)');
+      gradViolet.addColorStop(1, 'rgba(168, 85, 247, 0.35)');
+
+      chartEstatusUsuario = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: filtrados.map((r) => formatearEtiquetaLegible(r.etiqueta)),
+          datasets: [
+            {
+              label: 'Interacciones',
+              data: filtrados.map((r) => Number(r.total_interacciones) || 0),
+              backgroundColor: gradCyan,
+              borderColor: '#67e8f9',
+              borderWidth: 1,
+              borderRadius: 8,
+            },
+            {
+              label: 'Usuarios',
+              data: filtrados.map((r) => Number(r.total_usuarios) || 0),
+              backgroundColor: gradViolet,
+              borderColor: '#d8b4fe',
+              borderWidth: 1,
+              borderRadius: 8,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { labels: { color: '#f8fafc', usePointStyle: true } } },
+          scales: {
+            x: { ticks: { color: '#cbd5e1' }, grid: { color: 'rgba(148, 163, 184, 0.08)' } },
+            y: { beginAtZero: true, ticks: { color: '#cbd5e1' }, grid: { color: 'rgba(148, 163, 184, 0.16)' } },
+          },
+        },
+      });
+    }
+
+    function claseSentimiento(valor) {
+      const n = Number(valor) || 0;
+      if (n > 0.1) return 'sent-pos';
+      if (n < -0.1) return 'sent-neg';
+      return 'sent-neu';
+    }
+
+    async function cargarBitacora() {
+      const params = new URLSearchParams();
+      params.set('page', '1');
+      params.set('pageSize', '25');
+
+      const q = document.getElementById('bitacoraBuscar').value.trim();
+      const canalBitacora = document.getElementById('bitacoraCanal').value;
+      const estatusBitacora = document.getElementById('bitacoraEstatus').value;
+      const canalFiltro = document.getElementById('filtroCanal').value;
+      const temaFiltro = document.getElementById('filtroTema').value;
+      const desdeFiltro = document.getElementById('filtroDesde').value;
+      const hastaFiltro = document.getElementById('filtroHasta').value;
+
+      const canalFinal = canalBitacora || canalFiltro;
+      if (q) params.set('q', q);
+      if (canalFinal) params.set('id_canal', canalFinal);
+      if (estatusBitacora) params.set('estatus', estatusBitacora);
+      if (temaFiltro) params.set('id_tema', temaFiltro);
+      if (desdeFiltro) params.set('desde', `${desdeFiltro}T00:00:00Z`);
+      if (hastaFiltro) params.set('hasta', `${hastaFiltro}T23:59:59Z`);
+
+      const res = await fetch(`/api/interacciones?${params.toString()}`);
+      if (!res.ok) return;
+      const data = await res.json();
+      const tbody = document.getElementById('bitacoraBody');
+      tbody.innerHTML = '';
+
+      if (!data.interacciones || data.interacciones.length === 0) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan="7" class="bitacora-muted" style="text-align:center; padding:1.25rem;">No hay interacciones registradas para la combinación de filtros seleccionada.</td>`;
+        tbody.appendChild(tr);
+        return;
+      }
+
+      for (const item of data.interacciones) {
+        const tr = document.createElement('tr');
+        tr.className = 'bitacora-row';
+        const sentNum = Number(item.sentimiento) || 0;
+        const usuarioTexto = formatearUsuarioBitacora(item.alias_usuario, item.id_usuario);
+        const textoLimpio = item.texto && String(item.texto).trim()
+          ? item.texto
+          : '<span class="bitacora-muted">Sin texto (reacción)</span>';
+
+        tr.innerHTML = `
+          <td><code>${item.id_interaccion}</code></td>
+          <td><strong>${usuarioTexto}</strong></td>
+          <td>${formatearEtiquetaLegible(item.canal)}</td>
+          <td><span class="tema-label">${formatearEtiquetaLegible(item.tema)}</span></td>
+          <td>${formatearEtiquetaLegible(item.dispositivo)}</td>
+          <td><span class="sent-val ${claseSentimiento(sentNum)}">${sentNum.toFixed(2)}</span></td>
+          <td>${textoLimpio}</td>
+        `;
+
+        tr.addEventListener('click', () => {
+          abrirModalBitacora(item, tr);
+        });
+
+        tbody.appendChild(tr);
+      }
+    }
+
+    function buildHistoricoQueryString() {
+      const params = new URLSearchParams();
+      const canal = document.getElementById('filtroCanal').value;
+      const tema = document.getElementById('filtroTema').value;
+      const desde = document.getElementById('filtroDesde').value;
+      const hasta = document.getElementById('filtroHasta').value;
+
+      if (canal) params.set('id_canal', canal);
+      if (tema) params.set('id_tema', tema);
+      if (desde) params.set('desde', `${desde}T00:00:00Z`);
+      if (hasta) params.set('hasta', `${hasta}T23:59:59Z`);
+
+      const qs = params.toString();
+      return qs ? `?${qs}` : '';
+    }
+
+    async function actualizarGraficaBitacoraEstatus() {
+      const params = new URLSearchParams();
+      const canalBitacora = document.getElementById('bitacoraCanal').value;
+      const estatusSeleccionado = document.getElementById('bitacoraEstatus').value;
+
+      if (canalBitacora) params.set('id_canal', canalBitacora);
+      if (estatusSeleccionado) params.set('estatus', estatusSeleccionado);
+
+      const qs = params.toString() ? `?${params.toString()}` : '';
+      const res = await fetch(`/api/analitica/estadisticas${qs}`);
+      if (!res.ok) return;
+      const data = await res.json();
+      if (Array.isArray(data.por_estatus_usuario)) {
+        ultimaSerieEstatus = data.por_estatus_usuario;
+      }
+      renderEstatusUsuarioChart(ultimaSerieEstatus, estatusSeleccionado);
+    }
+
+    async function cargarAnaliticaHistoricaRest() {
+      const url = `/api/analitica/estadisticas${buildHistoricoQueryString()}`;
+      const res = await fetch(url);
+      if (!res.ok) {
+        registrarEvidencia('Consulta histórica', `ERROR ${res.status}`, 'No se pudieron cargar los datos históricos.');
+        return;
+      }
+      const data = await res.json();
+      actualizarKpis(data.kpis);
+      renderBarras(data.barras_canales);
+      renderDona(data.dona_polaridad);
+      renderHeatmap(data.heatmap);
+      renderSerieHistorica(data.serie_historica);
+      await cargarBitacora();
+      registrarEvidencia(
+        'Consulta histórica',
+        `OK ${res.status}`,
+        `Actualizados indicadores (${data.kpis.interacciones_depuradas} registros), gráficas y bitácora.`
+      );
+    }
+
+    async function manejarFiltroBitacora() {
+      const canalSel = document.getElementById('bitacoraCanal');
+      const estatusSel = document.getElementById('bitacoraEstatus');
+      const canalTexto = canalSel.value ? canalSel.options[canalSel.selectedIndex].text : 'Todos los canales';
+      const estatusTexto = estatusSel.value ? formatearEtiquetaLegible(estatusSel.value) : 'Todos los estados';
+
+      await cargarBitacora();
+      await actualizarGraficaBitacoraEstatus();
+      registrarEvidencia(
+        'Filtro de bitácora',
+        'OK 200',
+        `Bitácora y gráfica actualizadas para canal "${canalTexto}" y estado "${estatusTexto}".`
+      );
+    }
+
+    async function cargarCatalogos() {
+      const url = '/api/catalogos';
+      const res = await fetch(url);
+      if (!res.ok) {
+        registrarEvidencia('Carga de opciones', `ERROR ${res.status}`, 'No se pudieron cargar las opciones de filtro.');
+        return;
+      }
+      const data = await res.json();
+      const canalSel = document.getElementById('filtroCanal');
+      const temaSel = document.getElementById('filtroTema');
+      const bitacoraCanalSel = document.getElementById('bitacoraCanal');
+      const bitacoraEstatusSel = document.getElementById('bitacoraEstatus');
+
+      for (const c of data.canales || []) {
+        const nombreCanal = formatearEtiquetaLegible(c.nombre_canal);
+        const opt = document.createElement('option');
+        opt.value = c.id_canal;
+        opt.textContent = nombreCanal;
+        canalSel.appendChild(opt);
+
+        const optBit = document.createElement('option');
+        optBit.value = c.id_canal;
+        optBit.textContent = nombreCanal;
+        bitacoraCanalSel.appendChild(optBit);
+      }
+      for (const t of data.temas || []) {
+        const opt = document.createElement('option');
+        opt.value = t.id_tema;
+        opt.textContent = formatearEtiquetaLegible(t.nombre_tema);
+        temaSel.appendChild(opt);
+      }
+      for (const e of data.estatus_usuario || []) {
+        const opt = document.createElement('option');
+        opt.value = e.nombre_estatus;
+        opt.textContent = formatearEtiquetaLegible(e.nombre_estatus);
+        bitacoraEstatusSel.appendChild(opt);
+      }
+      registrarEvidencia('Carga de opciones', `OK ${res.status}`, 'Listas de canales, temas y estados cargadas.');
+    }
+
+    function conectarWebSocket() {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const wsUrl = `${protocol}//${window.location.host}/ws`;
+      wsSocket = new WebSocket(wsUrl);
+
+      wsSocket.addEventListener('open', () => {
+        const badge = document.getElementById('wsStatus');
+        badge.textContent = 'Tiempo real: Conectado';
+        badge.classList.add('connected');
+        wsSocket.send(JSON.stringify({ type: 'solicitar_analitica' }));
+        registrarEvidencia('Tiempo real', 'OPEN', 'Conexión activa; se solicitaron los datos iniciales.');
+      });
+
+      wsSocket.addEventListener('message', (event) => {
+        let msg;
+        try {
+          msg = JSON.parse(event.data);
+        } catch {
+          return;
+        }
+
+        const estatusSeleccionado = document.getElementById('bitacoraEstatus').value;
+
+        if (msg.type === 'pong') {
+          registrarEvidencia('Prueba de conexión', 'LIVE 200', 'Respuesta recibida desde el servidor.');
+        } else if (msg.type === 'analitica_actualizada' && msg.metricas) {
+          actualizarKpis(msg.metricas.kpis);
+          renderBarras(msg.metricas.barras_canales);
+          renderDona(msg.metricas.dona_polaridad);
+          renderHeatmap(msg.metricas.heatmap);
+          if (msg.metricas.por_estatus_usuario) {
+            ultimaSerieEstatus = msg.metricas.por_estatus_usuario;
+            renderEstatusUsuarioChart(ultimaSerieEstatus, estatusSeleccionado);
+          }
+        } else if (msg.type === 'interaccion_cambio') {
+          const idInt = msg.datos?.id_interaccion || 'sin identificador';
+          if (msg.metricas) {
+            actualizarKpis(msg.metricas.kpis);
+            renderBarras(msg.metricas.barras_canales);
+            renderDona(msg.metricas.dona_polaridad);
+            renderHeatmap(msg.metricas.heatmap);
+            if (msg.metricas.por_estatus_usuario) {
+              ultimaSerieEstatus = msg.metricas.por_estatus_usuario;
+              renderEstatusUsuarioChart(ultimaSerieEstatus, estatusSeleccionado);
+            }
+          }
+          cargarBitacora();
+          registrarEvidencia(
+            'Actualización en vivo',
+            'LIVE',
+            `Registro ${idInt}: indicadores, gráficas y bitácora actualizados.`
+          );
+        }
+      });
+
+      wsSocket.addEventListener('close', () => {
+        const badge = document.getElementById('wsStatus');
+        badge.textContent = 'Tiempo real: Desconectado';
+        badge.classList.remove('connected');
+      });
+    }
+
+    document.querySelectorAll('.chip-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.chip-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        const days = btn.dataset.days;
+        const desdeEl = document.getElementById('filtroDesde');
+        const hastaEl = document.getElementById('filtroHasta');
+
+        if (days === 'all') {
+          desdeEl.value = '';
+          hastaEl.value = '';
+        } else {
+          const end = new Date();
+          const start = new Date();
+          start.setUTCDate(end.getUTCDate() - Number(days));
+          desdeEl.value = start.toISOString().slice(0, 10);
+          hastaEl.value = end.toISOString().slice(0, 10);
+        }
+        cargarAnaliticaHistoricaRest();
+      });
+    });
+
+    document.getElementById('clearHmSelBtn').addEventListener('click', () => {
+      celdaFijada = null;
+      document.querySelectorAll('.hm-cell.selected').forEach((el) => el.classList.remove('selected'));
+      document.getElementById('clearHmSelBtn').style.display = 'none';
+      document.getElementById('hmInspector').textContent = 'Pasa o haz clic en una celda';
+    });
+
+    document.getElementById('cerrarModalBtn').addEventListener('click', cerrarModalBitacora);
+    document.getElementById('modalBitacora').addEventListener('click', (event) => {
+      if (event.target === event.currentTarget) {
+        cerrarModalBitacora();
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && document.getElementById('modalBitacora').classList.contains('open')) {
+        cerrarModalBitacora();
+      }
+    });
+
+    document.getElementById('bitacoraBuscar').addEventListener('input', cargarBitacora);
+    document.getElementById('bitacoraCanal').addEventListener('change', manejarFiltroBitacora);
+    document.getElementById('bitacoraEstatus').addEventListener('change', manejarFiltroBitacora);
+
+    async function init() {
+      const meRes = await fetch('/api/auth/me');
+      if (meRes.status === 401) {
+        window.location.href = '/login';
+        return;
+      }
+      const meData = await meRes.json();
+      document.getElementById('sessionInfo').textContent =
+        `Sesión activa: ${meData.usuario.correo} · perfil ${formatearEtiquetaLegible(meData.usuario.rol).toLowerCase()}`;
+
+      await cargarCatalogos();
+      await cargarAnaliticaHistoricaRest();
+      await actualizarGraficaBitacoraEstatus();
+      conectarWebSocket();
+    }
+
+    document.getElementById('btnAplicarFiltros').addEventListener('click', cargarAnaliticaHistoricaRest);
+    document.getElementById('btnLimpiarFiltros').addEventListener('click', () => {
+      document.getElementById('filtroCanal').value = '';
+      document.getElementById('filtroTema').value = '';
+      document.getElementById('filtroDesde').value = '';
+      document.getElementById('filtroHasta').value = '';
+      document.querySelectorAll('.chip-btn').forEach((b) => b.classList.toggle('active', b.dataset.days === 'all'));
+      cargarAnaliticaHistoricaRest();
+    });
+
+    document.getElementById('pingWsBtn').addEventListener('click', () => {
+      if (wsSocket && wsSocket.readyState === WebSocket.OPEN) {
+        wsSocket.send(JSON.stringify({ type: 'ping' }));
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      if (wsSocket) wsSocket.close();
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = '/login';
+    });
+
+    init();
+  </script>
+</body>
+
+</html>

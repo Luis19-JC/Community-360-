@@ -1,0 +1,208 @@
+id_interaccion,id_usuario,timestamp,canal,tipo,texto,tema,sentimiento,idioma,pais,estado,ciudad,dispositivo,longitud_texto,reacciones_recibidas,etiquetas
+I0001825,U000852,2026-10-28T16:59:03.000Z,Facebook,comentario,¿Alguien conoce bandas locales de la región?,musica,0.86,es,México,Yucatán,Mérida,Android,44,2,
+I0004013,U000176,2026-10-28T12:00:28.000Z,Instagram,mensaje,"Qué ganas de que llegue la próxima reunión, ¿ya hay fecha?",eventos_convenciones,0.23,es,Perú,Lima,Lima,Android,58,5,juegos|reglas|aviso
+I0003658,U000285,2026-10-16T22:29:37.000Z,Twitter/X,comentario,¿Quién juega esta noche? Armamos sala.,videojuegos,0.69,es,México,CDMX,Ciudad de México,Android,38,0,
+I0000521,U000849,2026-11-06T22:51:00.000Z,Instagram,comentario,¿Dónde consiguen buen material para fursuit sin gastar tanto?,fursuits,0.56,es,México,Nuevo León,Monterrey,Android,61,3,evento|arte|aviso
+I0004553,U000828,2026-10-13T04:45:29.000Z,Facebook,mensaje,¿Dónde consiguen buen material para fursuit sin gastar tanto?,fursuits,0.19,es,,,,Android,61,4,musica
+I0001675,U000169,2026-10-18T02:15:40.000Z,Facebook,mensaje,"El servidor del juego estuvo caído toda la tarde, qué fastidio.",videojuegos,-0.59,es,México,Veracruz,Veracruz,Android,63,1,aviso|reglas|musica
+I0005882,U000361,2026-10-26T06:53:00.000Z,Instagram,mensaje,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.87,es,México,Nuevo León,Monterrey,iOS,54,1,
+I0009892,U000495,2026-10-25T23:29:02.000Z,TikTok,respuesta_encuesta,"Me encantó el arte que compartieron hoy, el estilo es buenísimo.",arte_comisiones,0.83,es,México,Jalisco,Guadalajara,Escritorio,64,3,
+I0005926,U000259,2026-11-07T21:14:24.000Z,Telegram,reaccion,,eventos_convenciones,-0.2,es,México,Jalisco,Guadalajara,iOS,65,1,evento|reglas|aviso
+I0003151,U000002,2026-10-21T13:47:32.000Z,TikTok,mensaje,¿Quién juega esta noche? Armamos sala.,videojuegos,0.61,es,México,Jalisco,Guadalajara,Android,38,2,juegos
+I0001140,U001006,2026-10-27T12:35:27.000Z,Telegram,comentario,¿Quién juega esta noche? Armamos sala.,videojuegos,0.34,es,,,,iOS,38,0,juegos
+I0003734,U000329,2026-10-13T18:58:01.000Z,Telegram,respuesta_encuesta,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.35,es,México,Yucatán,Mérida,Escritorio,52,7,
+I0003815,U000208,2026-10-24T15:07:56.000Z,Telegram,respuesta_encuesta,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.68,es,México,Nuevo León,Monterrey,Android,52,1,humor|juegos
+I0001655,U000477,2026-10-19T23:08:50.000Z,Twitter/X,mensaje,"Qué ganas de que llegue la próxima reunión, ¿ya hay fecha?",eventos_convenciones,0.85,es,México,Guanajuato,León,Web,58,7,evento|juegos
+I0001170,U000002,2026-10-25T16:55:54.000Z,Twitter/X,respuesta_encuesta,"El servidor del juego estuvo caído toda la tarde, qué fastidio.",videojuegos,-0.64,es,México,Jalisco,Guadalajara,Escritorio,63,0,aviso|arte|humor
+I0008752,U000002,2026-10-19T09:35:09.000Z,TikTok,comentario,¿Alguien conoce bandas locales de la región?,musica,0.17,es,México,Jalisco,Guadalajara,iOS,44,2,evento|musica|reglas
+I0002678,U000845,2026-10-20T01:42:53.000Z,Instagram,mensaje,"Buen aviso sobre estafas de comisiones, gracias.",seguridad_privacidad,0.67,es,México,Veracruz,Veracruz,Android,48,1,musica
+I0005314,U000678,2026-10-10T21:46:17.000Z,Twitter/X,comentario,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.65,es,México,Nuevo León,Monterrey,Android,52,1,evento|humor|aviso
+I0003753,U000483,2026-10-30T10:53:48.000Z,Telegram,mensaje,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.44,es,México,Nuevo León,Monterrey,Android,54,0,humor|juegos
+I0003457,U000521,2026-10-25T03:16:42.000Z,Facebook,reaccion,,fursuits,0.76,es,México,Baja California,Tijuana,Android,61,0,evento|humor|arte
+I0003484,U000483,2026-10-12T21:37:54.000Z,Telegram,mensaje,Pagué una comisión hace semanas y el artista no responde.,arte_comisiones,-0.77,es,México,Nuevo León,Monterrey,Android,57,3,evento|reglas
+I0006483,U000375,2026-10-19T19:02:48.000Z,Facebook,mensaje,"Alguien filtró capturas privadas del grupo, necesitamos más seguridad.",seguridad_privacidad,-0.79,es,México,CDMX,Ciudad de México,Web,70,3,aviso|arte
+I0004340,U000997,2026-10-26T16:59:39.000Z,Facebook,mensaje,Me gusta que ahora haya reglas claras en el grupo.,reglas_moderacion,0.19,es,México,Veracruz,Veracruz,iOS,50,3,musica|aviso|reglas
+I0009198,U000002,2026-10-26T08:55:11.000Z,Facebook,respuesta_encuesta,"Les comparto mi playlist para dibujar, está bien chida.",musica,0.63,es,México,Jalisco,Guadalajara,iOS,55,1,
+I0009578,U000285,2026-10-28T12:23:30.000Z,Telegram,reaccion,,reglas_moderacion,0.42,es,México,CDMX,Ciudad de México,Android,54,2,arte|reglas
+I0002267,U001044,2026-10-16T11:23:13.000Z,Instagram,comentario,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.77,es,México,Yucatán,Mérida,Android,54,5,arte|reglas|aviso
+I0001490,U000078,2026-10-31T17:19:51.000Z,Discord,mensaje,"La última meet estuvo increíble, gracias a quienes organizaron.",eventos_convenciones,0.94,es,México,Yucatán,Mérida,Android,63,4,
+I0006917,U000641,2026-10-29T09:50:28.000Z,Telegram,comentario,"Vi que están usando arte sin dar créditos, eso no está bien.",arte_comisiones,-0.52,es,México,Yucatán,Mérida,Android,60,0,juegos
+I0009772,U000145,2026-10-15T18:55:32.000Z,Telegram,mensaje,El lugar de la reunión quedó muy lejos para quienes venimos de otros estados.,eventos_convenciones,-0.79,es,México,CDMX,Ciudad de México,Android,77,2,evento|arte
+I0001041,U000878,2026-10-18T21:05:57.000Z,Instagram,reaccion,,videojuegos,0.65,es,México,Querétaro,Querétaro,Android,38,5,evento|musica|humor
+I0006253,U000350,2026-10-21T05:06:26.000Z,Facebook,comentario,Me gusta que ahora haya reglas claras en el grupo.,reglas_moderacion,0.28,es,México,Yucatán,Mérida,Escritorio,50,0,juegos|evento|arte
+I0008670,U000172,2026-10-14T09:06:54.000Z,Twitter/X,mensaje,"Recomiendo este RPG indie, tiene temática de animales.",videojuegos,0.52,es,Colombia,Cundinamarca,Bogotá,iOS,54,4,juegos|arte
+I0001877,U000654,2026-10-23T08:53:52.000Z,Instagram,mensaje,Hay demasiado spam en el grupo últimamente.,reglas_moderacion,-0.55,es,México,Jalisco,Guadalajara,Android,43,1,humor
+I0004809,U001057,2026-10-16T10:27:23.000Z,Instagram,mensaje,"Recomiendo este RPG indie, tiene temática de animales.",videojuegos,0.46,es,México,Jalisco,Guadalajara,Android,54,7,evento|juegos
+I0000054,U000661,2026-11-02T21:28:51.000Z,Telegram,mensaje,Siento que la moderación tarda mucho en responder.,reglas_moderacion,-0.6,es,México,Puebla,Puebla,Android,50,2,
+I0001291,U000002,2026-11-08T23:25:39.000Z,Instagram,mensaje,"Qué ganas de que llegue la próxima reunión, ¿ya hay fecha?",eventos_convenciones,0.7,es,México,Jalisco,Guadalajara,Android,58,3,evento|arte|reglas
+I0001404,U000924,2026-11-06T15:38:28.000Z,Telegram,mensaje,Me gusta que ahora haya reglas claras en el grupo.,reglas_moderacion,0.66,es,México,Quintana Roo,Cancún,iOS,50,2,reglas|evento|arte
+I0002061,U000259,2026-10-30T23:46:13.000Z,Telegram,reaccion,,arte_comisiones,0.55,es,México,Jalisco,Guadalajara,iOS,64,2,
+I0003471,U000103,2026-11-01T18:24:47.000Z,TikTok,comentario,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.34,es,Argentina,Buenos Aires,Buenos Aires,Android,52,0,
+I0005108,U000558,2026-10-20T22:44:02.000Z,TikTok,comentario,¿Recomiendan algún artista para una referencia de fursona?,arte_comisiones,0.8,es,México,Quintana Roo,Cancún,Android,58,2,
+I0001050,U000002,2026-11-03T04:02:49.000Z,Telegram,comentario,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.83,es,México,Jalisco,Guadalajara,iOS,52,0,
+I0005540,U000150,2026-10-23T12:56:14.000Z,Facebook,comentario,Recuerden no compartir su ubicación exacta en público.,seguridad_privacidad,0.56,es,México,Veracruz,Veracruz,Android,54,1,humor|musica
+I0003609,U000208,2026-11-07T15:36:37.000Z,Telegram,reaccion,,seguridad_privacidad,0.8,es,México,Nuevo León,Monterrey,iOS,48,0,humor|musica|reglas
+I0000118,U000840,2026-10-20T13:11:18.000Z,Discord,mensaje,"Cambiaron la fecha del evento otra vez, así es imposible planear.",eventos_convenciones,-0.89,es,México,Nuevo León,Monterrey,Android,65,0,musica
+I0008424,U000659,2026-10-12T10:57:53.000Z,Facebook,mensaje,¿Quién juega esta noche? Armamos sala.,videojuegos,0.33,es,México,Chihuahua,Chihuahua,Web,38,0,aviso|reglas|humor
+I0009441,U000868,2026-10-26T14:07:43.000Z,Facebook,mensaje,¿Alguien va a la convención de este año? Busco con quién compartir hospedaje.,eventos_convenciones,0.75,es,,,,Android,77,3,musica|aviso
+I0007745,U000884,2026-10-22T01:58:07.000Z,Instagram,mensaje,"Alguien filtró capturas privadas del grupo, necesitamos más seguridad.",seguridad_privacidad,-0.72,es,,,,Escritorio,70,1,musica
+I0003982,U000425,2026-11-08T10:04:56.000Z,Facebook,mensaje,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.73,es,México,Veracruz,Veracruz,Android,54,0,reglas|aviso
+I0003120,U000257,2026-10-30T13:15:13.000Z,Facebook,mensaje,"Me encantó el arte que compartieron hoy, el estilo es buenísimo.",arte_comisiones,0.41,es,México,Baja California,Tijuana,Android,64,6,aviso
+I0005805,U001007,2026-10-14T05:07:12.000Z,Discord,reaccion,,reglas_moderacion,0.28,es,México,Yucatán,Mérida,Android,54,1,evento
+I0006597,U000495,2026-10-15T00:15:10.000Z,Telegram,reaccion,,videojuegos,0.79,es,México,Jalisco,Guadalajara,Android,38,0,arte|evento|humor
+I0003117,U000012,2026-11-04T18:11:17.000Z,Facebook,mensaje,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.28,es,México,Quintana Roo,Cancún,Android,54,2,arte
+I0002297,U000124,2026-11-04T02:28:43.000Z,Twitter/X,mensaje,¿Alguien va a la convención de este año? Busco con quién compartir hospedaje.,eventos_convenciones,0.47,es,México,Puebla,Puebla,Android,77,0,
+I0007261,U000678,2026-11-03T20:26:27.000Z,Facebook,reaccion,,memes_humor,0.18,es,México,Nuevo León,Monterrey,Android,45,0,humor|reglas
+I0007887,U000507,2026-11-08T23:50:15.000Z,Telegram,mensaje,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.65,es,México,Quintana Roo,Cancún,iOS,54,0,
+I0006210,U000660,2026-10-30T23:12:18.000Z,Facebook,respuesta_encuesta,"Qué ganas de que llegue la próxima reunión, ¿ya hay fecha?",eventos_convenciones,0.61,es,México,Querétaro,Querétaro,iOS,58,1,evento
+I0007455,U000139,2026-10-21T20:56:56.000Z,Twitter/X,mensaje,Me gusta que ahora haya reglas claras en el grupo.,reglas_moderacion,0.46,es,,,,Android,50,0,evento
+I0009106,U000924,2026-10-31T14:40:30.000Z,Telegram,mensaje,¿Dónde consiguen buen material para fursuit sin gastar tanto?,fursuits,0.41,es,México,Quintana Roo,Cancún,Android,61,5,reglas|aviso|humor
+I0000822,U000483,2026-10-19T07:45:51.000Z,Facebook,reaccion,,musica,0.37,es,México,Nuevo León,Monterrey,Android,55,2,humor|reglas|juegos
+I0007812,U000865,2026-10-25T10:40:30.000Z,Telegram,mensaje,Hay demasiado spam en el grupo últimamente.,reglas_moderacion,-0.88,es,México,CDMX,Ciudad de México,Escritorio,43,3,
+I0009750,U000145,2026-10-17T17:18:44.000Z,Telegram,comentario,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.8,es,México,CDMX,Ciudad de México,Android,54,0,
+I0009486,U000169,2026-10-23T18:47:47.000Z,Facebook,mensaje,Hay demasiado spam en el grupo últimamente.,reglas_moderacion,-0.29,es,México,Veracruz,Veracruz,Web,43,1,arte|evento
+I0006869,U000581,2026-11-05T16:46:51.000Z,TikTok,mensaje,"Qué ganas de que llegue la próxima reunión, ¿ya hay fecha?",eventos_convenciones,0.51,es,México,CDMX,Ciudad de México,iOS,58,0,evento|musica
+I0004273,U000483,2026-11-05T17:42:54.000Z,Telegram,comentario,"El servidor del juego estuvo caído toda la tarde, qué fastidio.",videojuegos,-0.46,es,México,Nuevo León,Monterrey,Android,63,6,reglas|aviso|musica
+I0005148,U000169,2026-10-16T16:02:15.000Z,Telegram,reaccion,,videojuegos,0.6,es,México,Veracruz,Veracruz,Android,38,0,musica
+I0006485,U000440,2026-11-07T22:17:20.000Z,Telegram,comentario,"Me encantó el arte que compartieron hoy, el estilo es buenísimo.",arte_comisiones,0.27,es,México,CDMX,Ciudad de México,Escritorio,64,1,reglas|evento
+I0001639,U000642,2026-10-16T12:58:09.000Z,Facebook,mensaje,Me gusta que ahora haya reglas claras en el grupo.,reglas_moderacion,0.18,es,México,Yucatán,Mérida,Android,50,2,juegos|evento
+I0003493,U000213,2026-10-12T14:35:53.000Z,Twitter/X,comentario,"La última meet estuvo increíble, gracias a quienes organizaron.",eventos_convenciones,0.83,es,México,Puebla,Puebla,Android,63,0,aviso|juegos
+I0004670,U000286,2026-11-03T22:37:32.000Z,TikTok,respuesta_encuesta,¿Recomiendan algún artista para una referencia de fursona?,arte_comisiones,0.89,es,Colombia,Cundinamarca,Bogotá,iOS,58,4,arte
+I0000129,U000002,2026-10-10T02:00:45.000Z,Telegram,reaccion,,videojuegos,0.92,es,México,Jalisco,Guadalajara,Android,54,7,juegos|aviso
+I0009087,U000738,2026-11-07T20:08:28.000Z,Facebook,respuesta_encuesta,Recuerden no compartir su ubicación exacta en público.,seguridad_privacidad,0.76,es,México,Campeche,Campeche,Android,54,2,
+I0001892,U000868,2026-10-29T15:36:56.000Z,Instagram,comentario,"El servidor del juego estuvo caído toda la tarde, qué fastidio.",videojuegos,-0.59,es,,,,Android,63,2,
+I0001754,U000002,2026-11-07T22:10:09.000Z,Twitter/X,mensaje,"Les comparto mi playlist para dibujar, está bien chida.",musica,0.34,es,México,Jalisco,Guadalajara,Android,55,6,arte|reglas
+I0004463,U000759,2026-10-26T18:13:10.000Z,Telegram,mensaje,¿Dónde consiguen buen material para fursuit sin gastar tanto?,fursuits,0.83,es,México,Yucatán,Mérida,Web,61,8,
+I0004617,U000598,2026-10-15T13:24:55.000Z,Facebook,mensaje,"La última meet estuvo increíble, gracias a quienes organizaron.",eventos_convenciones,0.25,es,México,Baja California,Tijuana,Escritorio,63,7,evento|reglas|juegos
+I0003451,U000380,2026-10-27T09:37:49.000Z,Instagram,rsvp_evento,¿Recomiendan algún artista para una referencia de fursona?,arte_comisiones,0.5,es,México,Nuevo León,Monterrey,Android,58,3,juegos|reglas
+I0002648,U000308,2026-10-13T20:10:19.000Z,Instagram,mensaje,"Mejor sticker pack de la semana, sin discusión.",memes_humor,0.35,es,México,CDMX,Ciudad de México,iOS,47,0,evento|juegos
+I0002089,U000058,2026-10-25T01:37:59.000Z,Instagram,reaccion,,videojuegos,0.33,es,México,CDMX,Ciudad de México,Android,38,3,musica|arte|humor
+I0002663,U000235,2026-11-02T01:36:08.000Z,Facebook,respuesta_encuesta,Pagué una comisión hace semanas y el artista no responde.,arte_comisiones,-0.81,es,México,Veracruz,Veracruz,Escritorio,57,0,juegos
+I0002939,U000036,2026-10-22T16:56:28.000Z,Telegram,reaccion,,arte_comisiones,0.27,es,,,,Android,52,5,humor|musica
+I0005443,U001012,2026-10-26T20:34:44.000Z,Telegram,mensaje,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.56,es,México,Querétaro,Querétaro,Android,54,5,
+I0006746,U000840,2026-10-27T11:07:12.000Z,Twitter/X,mensaje,¿Recomiendan algún artista para una referencia de fursona?,arte_comisiones,0.39,es,México,Nuevo León,Monterrey,Android,58,12,
+I0001772,U000187,2026-10-12T13:48:59.000Z,Instagram,mensaje,Pagué una comisión hace semanas y el artista no responde.,arte_comisiones,-0.47,es,México,Tabasco,Villahermosa,Android,57,1,arte|evento|juegos
+I0000635,U000866,2026-10-18T05:58:51.000Z,Instagram,reaccion,,fursuits,0.34,es,México,Puebla,Puebla,Android,61,4,evento
+I0005001,U000495,2026-10-15T23:53:10.000Z,Telegram,mensaje,¿Alguien va a la convención de este año? Busco con quién compartir hospedaje.,eventos_convenciones,0.91,es,México,Jalisco,Guadalajara,Android,77,0,
+I0003729,U000944,2026-11-05T15:53:49.000Z,Facebook,comentario,"Vi que están usando arte sin dar créditos, eso no está bien.",arte_comisiones,-0.76,es,México,Nuevo León,Monterrey,Android,60,9,evento
+I0005379,U000493,2026-10-14T05:56:25.000Z,Discord,comentario,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.65,es,México,Puebla,Puebla,iOS,54,1,aviso
+I0001138,U000917,2026-10-25T16:55:38.000Z,Telegram,comentario,"Qué ganas de que llegue la próxima reunión, ¿ya hay fecha?",eventos_convenciones,0.37,es,México,Yucatán,Mérida,Escritorio,58,0,juegos|evento
+I0005754,U000011,2026-10-28T01:14:28.000Z,Telegram,mensaje,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.95,es,,,,Web,52,1,evento|aviso|humor
+I0008347,U000477,2026-10-21T02:58:14.000Z,TikTok,mensaje,"Ese chiste ya está muy gastado, cambien de tema.",memes_humor,-0.63,es,México,Guanajuato,León,Escritorio,48,1,arte|musica
+I0001890,U000091,2026-10-27T17:43:35.000Z,Facebook,comentario,"Buen aviso sobre estafas de comisiones, gracias.",seguridad_privacidad,0.48,es,México,Jalisco,Guadalajara,iOS,48,1,arte|juegos
+I0004350,U000292,2026-10-19T10:03:22.000Z,Discord,comentario,Recuerden no compartir su ubicación exacta en público.,seguridad_privacidad,0.61,es,,,,Android,54,0,humor|musica
+I0009775,U000381,2026-11-04T03:55:58.000Z,Telegram,mensaje,¿Alguien conoce bandas locales de la región?,musica,0.64,es,,,,Escritorio,44,4,reglas
+I0007150,U000274,2026-10-16T11:06:04.000Z,Telegram,mensaje,"Buen aviso sobre estafas de comisiones, gracias.",seguridad_privacidad,0.93,es,México,Campeche,Campeche,iOS,48,4,juegos
+I0007145,U000039,2026-10-19T06:59:10.000Z,Telegram,mensaje,"Buen aviso sobre estafas de comisiones, gracias.",seguridad_privacidad,0.42,es,España,Comunidad de Madrid,Madrid,Web,48,5,arte|reglas
+I0005968,U000014,2026-10-19T08:59:15.000Z,Facebook,respuesta_encuesta,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.68,es,México,CDMX,Ciudad de México,iOS,52,1,humor|evento
+I0004921,U000002,2026-11-07T01:14:33.000Z,TikTok,mensaje,¿Recomiendan algún artista para una referencia de fursona?,arte_comisiones,0.95,es,México,Jalisco,Guadalajara,iOS,58,1,reglas
+I0008309,U000820,2026-10-16T11:39:31.000Z,Instagram,comentario,"Vi que están usando arte sin dar créditos, eso no está bien.",arte_comisiones,-0.78,es,Colombia,Cundinamarca,Bogotá,Web,60,1,juegos|arte|aviso
+I0005345,U000190,2026-11-04T18:45:43.000Z,Telegram,mensaje,Los fursuits profesionales están carísimos para nuestra región.,fursuits,-0.83,es,México,Veracruz,Veracruz,Web,63,3,musica|arte
+I0009325,U001045,2026-10-23T10:19:06.000Z,TikTok,comentario,"Vi que están usando arte sin dar créditos, eso no está bien.",arte_comisiones,-0.58,es,México,Tabasco,Villahermosa,Android,60,1,humor
+I0004979,U000917,2026-11-04T07:24:21.000Z,Telegram,reaccion,,reglas_moderacion,-0.79,es,México,Yucatán,Mérida,iOS,45,7,evento|arte
+I0005280,U001055,2026-10-24T14:00:55.000Z,Telegram,respuesta_encuesta,"Mejor sticker pack de la semana, sin discusión.",memes_humor,0.86,es,México,Guanajuato,León,Android,47,2,reglas
+I0007619,U000483,2026-10-26T08:57:54.000Z,Facebook,mensaje,"Terminé mi cabeza de cartón, ¿qué les parece el resultado?",fursuits,0.9,es,México,Nuevo León,Monterrey,Android,58,1,
+I0003502,U000924,2026-10-11T17:12:04.000Z,Telegram,comentario,"El servidor del juego estuvo caído toda la tarde, qué fastidio.",videojuegos,-0.61,es,México,Quintana Roo,Cancún,Web,63,0,reglas|evento|musica
+I0004650,U001064,2026-11-05T03:03:36.000Z,Facebook,rsvp_evento,"Terminé mi cabeza de cartón, ¿qué les parece el resultado?",fursuits,0.27,es,México,Quintana Roo,Cancún,Android,58,0,juegos|humor|musica
+I0005492,U001057,2026-11-05T02:47:50.000Z,Telegram,comentario,"Alguien filtró capturas privadas del grupo, necesitamos más seguridad.",seguridad_privacidad,-0.2,es,México,Jalisco,Guadalajara,Android,70,0,juegos
+I0005086,U000659,2026-10-26T04:33:04.000Z,TikTok,comentario,Pagué una comisión hace semanas y el artista no responde.,arte_comisiones,-0.81,es,México,Chihuahua,Chihuahua,Escritorio,57,0,arte
+I0000401,U000828,2026-11-03T05:47:37.000Z,Telegram,mensaje,"Buen aviso sobre estafas de comisiones, gracias.",seguridad_privacidad,0.47,es,,,,Escritorio,48,0,arte|reglas|musica
+I0000758,U000653,2026-10-19T03:51:29.000Z,Instagram,mensaje,"Vi que están usando arte sin dar créditos, eso no está bien.",arte_comisiones,-0.69,es,México,Yucatán,Mérida,Android,60,2,arte|evento
+I0004012,U000916,2026-10-16T11:52:29.000Z,Instagram,mensaje,Recuerden no compartir su ubicación exacta en público.,seguridad_privacidad,0.59,es,,,,Escritorio,54,4,
+I0003998,U001057,2026-11-06T01:13:20.000Z,Facebook,comentario,"Les comparto mi playlist para dibujar, está bien chida.",musica,0.45,es,México,Jalisco,Guadalajara,iOS,55,2,musica|reglas|juegos
+I0002418,U000003,2026-10-19T09:07:49.000Z,TikTok,rsvp_evento,"Me encantó el arte que compartieron hoy, el estilo es buenísimo.",arte_comisiones,0.23,es,México,Nuevo León,Monterrey,Web,64,8,evento
+I0001747,U000667,2026-11-02T07:59:12.000Z,Telegram,comentario,¿Quién juega esta noche? Armamos sala.,videojuegos,0.48,es,México,Guanajuato,León,iOS,38,0,aviso|evento
+I0006966,U000002,2026-10-26T08:58:44.000Z,Instagram,respuesta_encuesta,¿Alguien va a la convención de este año? Busco con quién compartir hospedaje.,eventos_convenciones,0.32,es,México,Jalisco,Guadalajara,iOS,77,2,arte|evento|aviso
+I0003586,U000951,2026-10-10T05:30:32.000Z,Facebook,comentario,"El servidor del juego estuvo caído toda la tarde, qué fastidio.",videojuegos,-0.89,es,México,Yucatán,Mérida,Web,63,5,
+I0002882,U000002,2026-10-13T09:18:27.000Z,Telegram,mensaje,"Me encantó el arte que compartieron hoy, el estilo es buenísimo.",arte_comisiones,0.72,es,México,Jalisco,Guadalajara,Web,64,3,evento|humor
+I0002185,U000578,2026-10-25T15:19:34.000Z,Twitter/X,mensaje,"Buen aviso sobre estafas de comisiones, gracias.",seguridad_privacidad,0.6,es,,,,Android,48,6,aviso|arte|reglas
+I0007613,U001057,2026-10-11T18:12:43.000Z,Telegram,comentario,Recuerden no compartir su ubicación exacta en público.,seguridad_privacidad,0.88,es,México,Jalisco,Guadalajara,iOS,54,2,
+I0009158,U001019,2026-10-11T16:40:26.000Z,Facebook,mensaje,"La última meet estuvo increíble, gracias a quienes organizaron.",eventos_convenciones,0.61,es,México,Oaxaca,Oaxaca,iOS,63,1,humor|evento|aviso
+I0008977,U000053,2026-10-24T23:39:28.000Z,Facebook,comentario,"Les comparto mi playlist para dibujar, está bien chida.",musica,0.53,es,Colombia,Cundinamarca,Bogotá,Android,55,3,aviso|musica
+I0008541,U000749,2026-10-12T22:17:03.000Z,Telegram,mensaje,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.93,es,,,,Web,52,0,juegos
+I0005239,U000511,2026-10-18T19:43:43.000Z,Telegram,mensaje,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.21,es,Perú,Lima,Lima,Android,54,3,arte|aviso
+I0001321,U000801,2026-10-23T05:32:40.000Z,Facebook,reaccion,,reglas_moderacion,-0.73,es,México,Yucatán,Mérida,Android,50,1,humor|reglas|juegos
+I0006813,U000169,2026-10-28T02:20:16.000Z,Telegram,reaccion,,fursuits,-0.89,es,México,Veracruz,Veracruz,Android,63,11,humor|aviso|reglas
+I0006884,U000002,2026-10-24T20:51:40.000Z,Instagram,mensaje,"Recomiendo este RPG indie, tiene temática de animales.",videojuegos,0.42,es,México,Jalisco,Guadalajara,Android,54,0,
+I0000321,U000292,2026-10-20T08:54:19.000Z,Twitter/X,comentario,¿Dónde consiguen buen material para fursuit sin gastar tanto?,fursuits,0.32,es,,,,iOS,61,0,humor
+I0008948,U001037,2026-10-13T06:03:15.000Z,Facebook,comentario,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.69,es,Perú,Lima,Lima,iOS,54,0,juegos|humor
+I0009884,U000192,2026-10-29T00:07:40.000Z,Instagram,mensaje,¿Dónde consiguen buen material para fursuit sin gastar tanto?,fursuits,0.17,es,México,Nuevo León,Monterrey,Android,61,8,aviso|evento|humor
+I0000476,U000749,2026-10-10T23:34:05.000Z,Instagram,comentario,Me gusta que ahora haya reglas claras en el grupo.,reglas_moderacion,0.28,es,,,,iOS,50,0,musica|aviso|reglas
+I0009698,U000186,2026-10-11T03:25:33.000Z,Discord,mensaje,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.66,es,México,Quintana Roo,Cancún,Escritorio,54,8,
+I0004134,U000408,2026-10-31T09:45:50.000Z,Discord,mensaje,¿Alguien va a la convención de este año? Busco con quién compartir hospedaje.,eventos_convenciones,0.49,es,México,Yucatán,Mérida,Web,77,0,evento|arte|musica
+I0007706,U000997,2026-10-29T03:00:08.000Z,Instagram,comentario,Los fursuits profesionales están carísimos para nuestra región.,fursuits,-0.46,es,México,Veracruz,Veracruz,Escritorio,63,9,juegos
+I0000660,U000423,2026-11-06T09:49:05.000Z,Discord,respuesta_encuesta,"Ese chiste ya está muy gastado, cambien de tema.",memes_humor,-0.2,es,México,Quintana Roo,Cancún,iOS,48,1,humor
+I0009241,U001024,2026-10-18T21:03:07.000Z,Facebook,rsvp_evento,"Recomiendo este RPG indie, tiene temática de animales.",videojuegos,0.68,es,Argentina,Buenos Aires,Buenos Aires,Android,54,7,musica|humor
+I0006044,U000523,2026-10-25T01:47:14.000Z,Telegram,reaccion,,videojuegos,0.51,es,Perú,Lima,Lima,iOS,38,1,arte|evento|aviso
+I0002684,U000329,2026-10-11T14:03:37.000Z,Telegram,reaccion,,videojuegos,-0.43,es,México,Yucatán,Mérida,Android,63,1,
+I0005097,U000924,2026-10-18T10:32:18.000Z,Instagram,mensaje,"El servidor del juego estuvo caído toda la tarde, qué fastidio.",videojuegos,-0.69,es,México,Quintana Roo,Cancún,Android,63,0,reglas|humor|juegos
+I0006499,U000047,2026-10-16T11:24:01.000Z,Telegram,comentario,¿Dónde consiguen buen material para fursuit sin gastar tanto?,fursuits,0.79,es,México,Tabasco,Villahermosa,Android,61,2,
+I0009838,U000174,2026-10-26T17:35:59.000Z,Instagram,mensaje,"El servidor del juego estuvo caído toda la tarde, qué fastidio.",videojuegos,-0.21,es,México,Yucatán,Mérida,Android,63,3,
+I0005591,U001057,2026-10-26T22:43:31.000Z,Discord,comentario,"Vi que están usando arte sin dar créditos, eso no está bien.",arte_comisiones,-0.17,es,México,Jalisco,Guadalajara,Escritorio,60,2,arte|musica|humor
+I0000208,U001044,2026-11-02T10:07:22.000Z,Telegram,respuesta_encuesta,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.33,es,México,Yucatán,Mérida,Android,54,0,arte|evento
+I0008032,U000367,2026-10-28T18:28:38.000Z,Telegram,comentario,"Mejor sticker pack de la semana, sin discusión.",memes_humor,0.86,es,México,Guanajuato,León,Web,47,1,reglas
+I0004426,U000258,2026-10-29T08:09:18.000Z,Twitter/X,respuesta_encuesta,"Les comparto mi playlist para dibujar, está bien chida.",musica,0.57,es,México,Nuevo León,Monterrey,Android,55,2,
+I0004398,U000702,2026-10-23T15:42:42.000Z,Discord,respuesta_encuesta,¿Recomiendan algún artista para una referencia de fursona?,arte_comisiones,0.27,es,México,CDMX,Ciudad de México,Web,58,1,
+I0010000,U001055,2026-10-13T11:47:07.000Z,TikTok,comentario,"Cambiaron la fecha del evento otra vez, así es imposible planear.",eventos_convenciones,-0.44,es,México,Guanajuato,León,Android,65,0,arte|humor|aviso
+I0009107,U000971,2026-10-22T11:37:58.000Z,Telegram,reaccion,,eventos_convenciones,0.84,es,México,CDMX,Ciudad de México,iOS,63,3,musica|evento|humor
+I0008465,U000012,2026-10-12T17:30:53.000Z,Instagram,mensaje,Este meme me representa completamente jajaja.,memes_humor,0.59,es,México,Quintana Roo,Cancún,Escritorio,45,1,aviso|arte
+I0009097,U000859,2026-10-25T16:05:13.000Z,TikTok,rsvp_evento,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.95,es,Perú,Lima,Lima,Android,52,2,arte
+I0007801,U000483,2026-10-14T13:20:37.000Z,Telegram,comentario,El lugar de la reunión quedó muy lejos para quienes venimos de otros estados.,eventos_convenciones,-0.23,es,México,Nuevo León,Monterrey,Escritorio,77,4,juegos
+I0005017,U000112,2026-11-06T08:02:33.000Z,Facebook,mensaje,"Vi que están usando arte sin dar créditos, eso no está bien.",arte_comisiones,-0.23,es,,,,Android,60,3,arte
+I0006047,U000144,2026-11-03T11:50:33.000Z,Facebook,respuesta_encuesta,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.81,es,México,Veracruz,Veracruz,Android,52,2,humor
+I0009069,U000659,2026-10-11T08:28:50.000Z,TikTok,mensaje,"Cambiaron la fecha del evento otra vez, así es imposible planear.",eventos_convenciones,-0.6,es,México,Chihuahua,Chihuahua,Escritorio,65,4,
+I0008699,U001000,2026-10-16T09:57:07.000Z,Twitter/X,mensaje,¿Alguien conoce bandas locales de la región?,musica,0.31,es,México,CDMX,Ciudad de México,Android,44,11,reglas
+I0003778,U000865,2026-10-26T06:13:41.000Z,TikTok,comentario,Me gusta que ahora haya reglas claras en el grupo.,reglas_moderacion,0.49,es,México,CDMX,Ciudad de México,Android,50,3,
+I0003156,U000108,2026-10-18T12:22:57.000Z,Twitter/X,mensaje,"La última meet estuvo increíble, gracias a quienes organizaron.",eventos_convenciones,0.83,es,Perú,Lima,Lima,iOS,63,1,
+I0005170,U000002,2026-10-18T06:50:45.000Z,TikTok,comentario,"El servidor del juego estuvo caído toda la tarde, qué fastidio.",videojuegos,-0.59,es,México,Jalisco,Guadalajara,Android,63,5,humor|evento
+I0003139,U000228,2026-10-20T06:39:05.000Z,Twitter/X,mensaje,¿Alguien conoce bandas locales de la región?,musica,0.84,es,,,,iOS,44,0,aviso
+I0003546,U000717,2026-11-07T04:37:31.000Z,Twitter/X,mensaje,"Qué ganas de que llegue la próxima reunión, ¿ya hay fecha?",eventos_convenciones,0.32,es,México,Yucatán,Mérida,Android,58,2,musica|arte|evento
+I0009778,U000267,2026-10-22T10:48:41.000Z,Facebook,rsvp_evento,Este meme me representa completamente jajaja.,memes_humor,0.8,es,Colombia,Cundinamarca,Bogotá,Escritorio,45,0,evento
+I0001648,U000948,2026-11-02T18:58:21.000Z,Facebook,mensaje,El lugar de la reunión quedó muy lejos para quienes venimos de otros estados.,eventos_convenciones,-0.86,es,México,Yucatán,Mérida,Android,77,0,
+I0000232,U000621,2026-10-31T04:03:17.000Z,TikTok,comentario,"Qué ganas de que llegue la próxima reunión, ¿ya hay fecha?",eventos_convenciones,0.89,es,México,Jalisco,Guadalajara,Android,58,9,musica|juegos
+I0004659,U000015,2026-11-02T02:16:36.000Z,TikTok,mensaje,¿Quién juega esta noche? Armamos sala.,videojuegos,0.29,es,México,Tabasco,Villahermosa,Android,38,0,aviso
+I0007691,U000849,2026-11-06T23:37:23.000Z,Telegram,reaccion,,arte_comisiones,-0.36,es,México,Nuevo León,Monterrey,Android,57,0,arte|musica|juegos
+I0000842,U000436,2026-10-23T04:43:04.000Z,Telegram,respuesta_encuesta,Gracias a los admins por resolver el conflicto rápido.,reglas_moderacion,0.63,es,México,Yucatán,Mérida,Android,54,0,evento
+I0002486,U000152,2026-10-30T03:14:38.000Z,Telegram,respuesta_encuesta,"El servidor del juego estuvo caído toda la tarde, qué fastidio.",videojuegos,-0.53,es,México,Tabasco,Villahermosa,Android,63,0,evento
+I0002445,U000154,2026-10-14T02:11:31.000Z,Facebook,mensaje,Recuerden no compartir su ubicación exacta en público.,seguridad_privacidad,0.92,es,,,,Android,54,0,
+I0009144,U000211,2026-10-13T12:49:16.000Z,Discord,comentario,¿Alguien conoce bandas locales de la región?,musica,0.51,es,,,,Web,44,0,aviso|juegos|humor
+I0007382,U000865,2026-10-12T16:28:44.000Z,Facebook,mensaje,¿Alguien va a la convención de este año? Busco con quién compartir hospedaje.,eventos_convenciones,0.75,es,México,CDMX,Ciudad de México,Android,77,2,juegos
+I0004872,U000691,2026-10-19T11:41:02.000Z,Telegram,comentario,"Me encantó el arte que compartieron hoy, el estilo es buenísimo.",arte_comisiones,0.67,es,,,,Android,64,6,evento|arte
+I0003405,U000257,2026-10-30T05:03:06.000Z,Discord,mensaje,Este meme me representa completamente jajaja.,memes_humor,0.8,es,México,Baja California,Tijuana,Android,45,6,
+I0002574,U000030,2026-10-20T12:03:33.000Z,Twitter/X,comentario,Recuerden no compartir su ubicación exacta en público.,seguridad_privacidad,0.87,es,México,Yucatán,Mérida,iOS,54,1,evento|musica
+I0003930,U000849,2026-11-01T05:36:06.000Z,TikTok,reaccion,,seguridad_privacidad,0.45,es,México,Nuevo León,Monterrey,Android,54,14,juegos|humor|aviso
+I0002848,U001057,2026-11-08T03:38:44.000Z,Telegram,mensaje,¿Quién juega esta noche? Armamos sala.,videojuegos,0.65,es,México,Jalisco,Guadalajara,Escritorio,38,0,
+I0004772,U000787,2026-10-17T14:15:35.000Z,Facebook,mensaje,"Recomiendo este RPG indie, tiene temática de animales.",videojuegos,0.91,es,México,CDMX,Ciudad de México,iOS,54,1,
+I0007439,U000744,2026-11-07T19:50:19.000Z,Discord,reaccion,,reglas_moderacion,0.53,es,México,Yucatán,Mérida,Web,50,0,reglas|arte|evento
+I0003825,U000468,2026-10-17T02:41:30.000Z,Telegram,mensaje,"Me encantó el arte que compartieron hoy, el estilo es buenísimo.",arte_comisiones,0.22,es,Argentina,Buenos Aires,Buenos Aires,Android,64,1,humor|juegos|reglas
+I0004335,U000257,2026-10-27T21:58:49.000Z,Telegram,reaccion,,reglas_moderacion,0.32,es,México,Baja California,Tijuana,Android,54,2,humor
+I0004353,U000996,2026-10-18T16:29:40.000Z,Telegram,mensaje,"Vi que están usando arte sin dar créditos, eso no está bien.",arte_comisiones,-0.31,es,México,Nuevo León,Monterrey,Android,60,0,
+I0009326,U001062,2026-11-02T00:46:27.000Z,Facebook,mensaje,¿Recomiendan algún artista para una referencia de fursona?,arte_comisiones,0.45,es,,,,Android,58,16,humor|aviso
+I0002038,U000002,2026-10-27T05:41:56.000Z,TikTok,comentario,Me gusta que ahora haya reglas claras en el grupo.,reglas_moderacion,0.77,es,México,Jalisco,Guadalajara,iOS,50,4,arte
+I0006595,U000361,2026-10-11T09:54:04.000Z,Facebook,comentario,Siento que la moderación tarda mucho en responder.,reglas_moderacion,-0.39,es,México,Nuevo León,Monterrey,Android,50,0,musica|evento
+I0009799,U000002,2026-10-20T16:30:13.000Z,TikTok,reaccion,,videojuegos,0.74,es,México,Jalisco,Guadalajara,Android,38,0,aviso|humor|juegos
+I0007079,U001009,2026-10-24T10:13:47.000Z,Telegram,mensaje,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.92,es,México,Yucatán,Mérida,Web,52,10,
+I0004103,U001055,2026-10-24T20:34:11.000Z,Facebook,comentario,"Recomiendo este RPG indie, tiene temática de animales.",videojuegos,0.71,es,México,Guanajuato,León,iOS,54,3,
+I0000424,U000521,2026-10-27T10:09:57.000Z,Telegram,mensaje,Este meme me representa completamente jajaja.,memes_humor,0.25,es,México,Baja California,Tijuana,Android,45,7,humor|aviso
+I0009425,U000917,2026-11-05T02:04:51.000Z,Telegram,comentario,¿Dónde consiguen buen material para fursuit sin gastar tanto?,fursuits,0.21,es,México,Yucatán,Mérida,Web,61,11,juegos|aviso
+I0009442,U000607,2026-10-23T17:33:12.000Z,Telegram,mensaje,Me gusta que ahora haya reglas claras en el grupo.,reglas_moderacion,0.63,es,México,Quintana Roo,Cancún,Android,50,4,humor|aviso
+I0007246,U001064,2026-11-02T23:05:05.000Z,Twitter/X,reaccion,,musica,0.75,es,México,Quintana Roo,Cancún,iOS,55,0,juegos
+I0005404,U000469,2026-10-20T02:48:38.000Z,Telegram,comentario,¿Alguien va a la convención de este año? Busco con quién compartir hospedaje.,eventos_convenciones,0.9,es,México,CDMX,Ciudad de México,iOS,77,3,arte
+I0008118,U000137,2026-10-24T07:02:47.000Z,Telegram,comentario,"Vi que están usando arte sin dar créditos, eso no está bien.",arte_comisiones,-0.27,es,,,,Android,60,13,humor|juegos|musica
+I0004723,U000483,2026-10-10T16:03:38.000Z,Facebook,mensaje,Me gusta que ahora haya reglas claras en el grupo.,reglas_moderacion,0.51,es,México,Nuevo León,Monterrey,iOS,50,3,reglas|musica|evento
+I0007452,U000914,2026-10-21T18:57:20.000Z,TikTok,mensaje,Hay demasiado spam en el grupo últimamente.,reglas_moderacion,-0.16,es,México,Guanajuato,León,Android,43,4,arte|aviso
+I0007942,U000827,2026-11-03T17:34:42.000Z,Telegram,comentario,"Abro comisiones esta semana, escríbanme por privado.",arte_comisiones,0.84,es,México,Quintana Roo,Cancún,iOS,52,2,
+I0002595,U000568,2026-10-21T15:10:16.000Z,Facebook,reaccion,,arte_comisiones,0.82,es,México,CDMX,Ciudad de México,Android,64,0,
+I0006685,U000984,2026-11-05T03:01:19.000Z,Discord,mensaje,"Me encantó el arte que compartieron hoy, el estilo es buenísimo.",arte_comisiones,0.37,es,México,Puebla,Puebla,Android,64,0,evento|humor
+I0007484,U000916,2026-11-06T03:02:05.000Z,Instagram,comentario,"Qué ganas de que llegue la próxima reunión, ¿ya hay fecha?",eventos_convenciones,0.71,es,,,,iOS,58,6,
+I0009032,U000924,2026-11-04T02:49:20.000Z,Facebook,respuesta_encuesta,"Ese chiste ya está muy gastado, cambien de tema.",memes_humor,-0.83,es,México,Quintana Roo,Cancún,Web,48,0,juegos|evento
+I0003123,U000231,2026-10-26T07:24:41.000Z,Facebook,reaccion,,arte_comisiones,0.44,es,México,Guanajuato,León,iOS,52,9,aviso|evento
+I0009821,U000966,2026-10-16T10:17:40.000Z,Telegram,reaccion,,arte_comisiones,-0.27,es,,,,Android,60,0,arte
+I0002237,U000916,2026-10-27T23:28:46.000Z,Facebook,reaccion,,memes_humor,0.46,es,,,,iOS,47,7,humor|aviso
+I0008319,U000308,2026-11-01T09:35:47.000Z,Telegram,respuesta_encuesta,¿Alguien va a la convención de este año? Busco con quién compartir hospedaje.,eventos_convenciones,0.48,es,México,CDMX,Ciudad de México,iOS,77,3,
+I0004635,U000483,2026-10-26T08:43:09.000Z,Telegram,mensaje,"Ese chiste ya está muy gastado, cambien de tema.",memes_humor,-0.62,es,México,Nuevo León,Monterrey,iOS,48,0,
+I0008904,U000863,2026-11-08T18:03:58.000Z,Facebook,reaccion,,reglas_moderacion,0.94,es,México,CDMX,Ciudad de México,Web,54,9,arte|humor
+I0006181,U000849,2026-10-20T22:11:12.000Z,Facebook,mensaje,¿Alguien conoce bandas locales de la región?,musica,0.92,es,México,Nuevo León,Monterrey,Android,44,3,aviso|humor
+I0003913,U000537,2026-10-10T22:40:46.000Z,Discord,respuesta_encuesta,"Me encantó el arte que compartieron hoy, el estilo es buenísimo.",arte_comisiones,0.2,es,México,Querétaro,Querétaro,Android,64,1,juegos|aviso
+I0000716,U000495,2026-10-24T00:19:48.000Z,TikTok,mensaje,Recuerden no compartir su ubicación exacta en público.,seguridad_privacidad,0.88,es,México,Jalisco,Guadalajara,Android,54,10,musica
+I0002530,U000002,2026-10-26T02:45:33.000Z,Telegram,reaccion,,arte_comisiones,0.23,es,México,Jalisco,Guadalajara,iOS,64,0,aviso|arte
